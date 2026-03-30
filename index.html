@@ -1,0 +1,712 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Miniresto — Menu</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+<style>
+  :root {
+    --bg: #0f0e0c;
+    --surface: #1a1814;
+    --card: #211f1b;
+    --border: #2e2b25;
+    --gold: #c9a84c;
+    --gold-light: #e8c97a;
+    --red: #c0392b;
+    --text: #f0ead8;
+    --muted: #8a8070;
+    --white: #ffffff;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* HEADER */
+  header {
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+    padding: 20px 24px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 26px;
+    font-weight: 900;
+    color: var(--gold);
+    letter-spacing: 1px;
+  }
+
+  .logo span {
+    color: var(--text);
+    font-weight: 700;
+  }
+
+  .cart-btn {
+    background: var(--gold);
+    color: #0f0e0c;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 50px;
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 500;
+    font-size: 14px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: background 0.2s;
+  }
+
+  .cart-btn:hover { background: var(--gold-light); }
+
+  .cart-count {
+    background: var(--red);
+    color: white;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    font-size: 11px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+  }
+
+  /* HERO */
+  .hero {
+    padding: 48px 24px 32px;
+    text-align: center;
+    background: radial-gradient(ellipse at top, #2a2418 0%, var(--bg) 70%);
+  }
+
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(36px, 8vw, 64px);
+    font-weight: 900;
+    line-height: 1.1;
+    margin-bottom: 12px;
+  }
+
+  .hero h1 span { color: var(--gold); }
+
+  .hero p {
+    color: var(--muted);
+    font-size: 15px;
+    font-weight: 300;
+  }
+
+  /* CATEGORY TABS */
+  .tabs {
+    display: flex;
+    gap: 8px;
+    padding: 24px 24px 0;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+
+  .tabs::-webkit-scrollbar { display: none; }
+
+  .tab {
+    background: var(--card);
+    border: 1px solid var(--border);
+    color: var(--muted);
+    padding: 10px 20px;
+    border-radius: 50px;
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: all 0.2s;
+    font-family: 'DM Sans', sans-serif;
+  }
+
+  .tab:hover, .tab.active {
+    background: var(--gold);
+    border-color: var(--gold);
+    color: #0f0e0c;
+  }
+
+  /* SECTIONS */
+  .section {
+    padding: 32px 24px 0;
+  }
+
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--gold);
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  /* ITEMS GRID */
+  .items-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 16px;
+    margin-bottom: 8px;
+  }
+
+  .item-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 16px;
+    transition: border-color 0.2s, transform 0.2s;
+  }
+
+  .item-card:hover {
+    border-color: var(--gold);
+    transform: translateY(-2px);
+  }
+
+  .item-card.in-cart {
+    border-color: var(--gold);
+    background: #221f16;
+  }
+
+  .item-info { flex: 1; }
+
+  .item-name {
+    font-weight: 500;
+    font-size: 16px;
+    margin-bottom: 6px;
+    color: var(--text);
+  }
+
+  .item-desc {
+    font-size: 12px;
+    color: var(--muted);
+    line-height: 1.5;
+    margin-bottom: 10px;
+    font-weight: 300;
+  }
+
+  .item-price {
+    font-family: 'Playfair Display', serif;
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--gold);
+  }
+
+  .item-price span {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 12px;
+    font-weight: 400;
+    color: var(--muted);
+  }
+
+  /* QTY CONTROL */
+  .qty-control {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    min-width: 36px;
+  }
+
+  .qty-btn {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    border: 1px solid var(--border);
+    background: var(--surface);
+    color: var(--text);
+    font-size: 18px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.15s;
+    font-family: 'DM Sans', sans-serif;
+    line-height: 1;
+  }
+
+  .qty-btn:hover { background: var(--gold); color: #0f0e0c; border-color: var(--gold); }
+  .qty-btn.add { background: var(--gold); color: #0f0e0c; border-color: var(--gold); }
+  .qty-btn.add:hover { background: var(--gold-light); }
+
+  .qty-num {
+    font-weight: 700;
+    font-size: 15px;
+    color: var(--gold);
+    min-width: 20px;
+    text-align: center;
+  }
+
+  /* CART PANEL */
+  .cart-panel {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: var(--surface);
+    border-top: 1px solid var(--border);
+    padding: 20px 24px;
+    transform: translateY(100%);
+    transition: transform 0.3s ease;
+    z-index: 200;
+    max-height: 70vh;
+    overflow-y: auto;
+    border-radius: 24px 24px 0 0;
+  }
+
+  .cart-panel.open { transform: translateY(0); }
+
+  .cart-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+
+  .cart-header h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 20px;
+    color: var(--gold);
+  }
+
+  .close-btn {
+    background: var(--card);
+    border: 1px solid var(--border);
+    color: var(--text);
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .cart-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 0;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .cart-item-name { font-size: 14px; font-weight: 500; }
+  .cart-item-qty { font-size: 13px; color: var(--muted); }
+  .cart-item-price { font-size: 14px; color: var(--gold); font-weight: 500; }
+
+  .cart-total {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px 0 0;
+    margin-top: 4px;
+  }
+
+  .cart-total-label {
+    font-family: 'Playfair Display', serif;
+    font-size: 18px;
+  }
+
+  .cart-total-amount {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    color: var(--gold);
+    font-weight: 700;
+  }
+
+  .order-btn {
+    width: 100%;
+    background: var(--gold);
+    color: #0f0e0c;
+    border: none;
+    padding: 16px;
+    border-radius: 14px;
+    font-family: 'Playfair Display', serif;
+    font-size: 18px;
+    font-weight: 700;
+    cursor: pointer;
+    margin-top: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    transition: background 0.2s;
+    letter-spacing: 0.5px;
+  }
+
+  .order-btn:hover { background: var(--gold-light); }
+
+  .empty-cart {
+    text-align: center;
+    color: var(--muted);
+    padding: 32px 0;
+    font-size: 14px;
+  }
+
+  /* OVERLAY */
+  .overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.6);
+    z-index: 150;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s;
+  }
+
+  .overlay.show { opacity: 1; pointer-events: all; }
+
+  /* BOTTOM PADDING */
+  .bottom-spacer { height: 120px; }
+
+  /* FOOTER */
+  footer {
+    text-align: center;
+    padding: 16px;
+    color: var(--muted);
+    font-size: 12px;
+    border-top: 1px solid var(--border);
+  }
+
+  @media (max-width: 480px) {
+    .items-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo">Mini<span>resto</span></div>
+  <button class="cart-btn" onclick="toggleCart()">
+    🛒 My Order
+    <div class="cart-count" id="cartCount">0</div>
+  </button>
+</header>
+
+<div class="hero">
+  <h1>Our <span>Menu</span></h1>
+  <p>Pick your favorites and order in seconds via Telegram</p>
+</div>
+
+<div class="tabs">
+  <div class="tab active" onclick="scrollTo('burgers', this)">🍔 Burgers</div>
+  <div class="tab" onclick="scrollTo('pizza', this)">🍕 Pizza</div>
+  <div class="tab" onclick="scrollTo('pasta', this)">🍝 Pasta</div>
+  <div class="tab" onclick="scrollTo('drinks', this)">🥤 Drinks</div>
+</div>
+
+<!-- BURGERS -->
+<div class="section" id="burgers">
+  <div class="section-title">🍔 Burgers</div>
+  <div class="items-grid">
+    <div class="item-card" id="card-classic-smash">
+      <div class="item-info">
+        <div class="item-name">Classic Smash</div>
+        <div class="item-desc">Smashed beef patty, American cheese, pickles, onion, special sauce</div>
+        <div class="item-price">5.99 <span>JD</span></div>
+      </div>
+      <div class="qty-control">
+        <button class="qty-btn" onclick="changeQty('Classic Smash', 5.99, 1)">+</button>
+        <div class="qty-num" id="qty-Classic Smash">0</div>
+        <button class="qty-btn" onclick="changeQty('Classic Smash', 5.99, -1)">−</button>
+      </div>
+    </div>
+    <div class="item-card" id="card-bacon-boss">
+      <div class="item-info">
+        <div class="item-name">Bacon Boss</div>
+        <div class="item-desc">Beef patty, crispy streaky bacon, BBQ sauce, aged cheddar, lettuce, tomato</div>
+        <div class="item-price">9.49 <span>JD</span></div>
+      </div>
+      <div class="qty-control">
+        <button class="qty-btn" onclick="changeQty('Bacon Boss', 9.49, 1)">+</button>
+        <div class="qty-num" id="qty-Bacon Boss">0</div>
+        <button class="qty-btn" onclick="changeQty('Bacon Boss', 9.49, -1)">−</button>
+      </div>
+    </div>
+    <div class="item-card" id="card-inferno-burger">
+      <div class="item-info">
+        <div class="item-name">Inferno Burger 🌶️</div>
+        <div class="item-desc">Double patty, ghost pepper sauce, jalapeños, pepper jack cheese, crispy onions</div>
+        <div class="item-price">8.49 <span>JD</span></div>
+      </div>
+      <div class="qty-control">
+        <button class="qty-btn" onclick="changeQty('Inferno Burger', 8.49, 1)">+</button>
+        <div class="qty-num" id="qty-Inferno Burger">0</div>
+        <button class="qty-btn" onclick="changeQty('Inferno Burger', 8.49, -1)">−</button>
+      </div>
+    </div>
+    <div class="item-card" id="card-triple-cheese">
+      <div class="item-info">
+        <div class="item-name">Triple Cheese Stack</div>
+        <div class="item-desc">Triple patty, cheddar, gouda & brie, caramelized onions, truffle aioli</div>
+        <div class="item-price">11.99 <span>JD</span></div>
+      </div>
+      <div class="qty-control">
+        <button class="qty-btn" onclick="changeQty('Triple Cheese Stack', 11.99, 1)">+</button>
+        <div class="qty-num" id="qty-Triple Cheese Stack">0</div>
+        <button class="qty-btn" onclick="changeQty('Triple Cheese Stack', 11.99, -1)">−</button>
+      </div>
+    </div>
+    <div class="item-card" id="card-the-royal">
+      <div class="item-info">
+        <div class="item-name">The Royal 👑</div>
+        <div class="item-desc">Double wagyu patty, foie gras sauce, aged cheddar, gold brioche bun</div>
+        <div class="item-price">16.99 <span>JD</span></div>
+      </div>
+      <div class="qty-control">
+        <button class="qty-btn" onclick="changeQty('The Royal', 16.99, 1)">+</button>
+        <div class="qty-num" id="qty-The Royal">0</div>
+        <button class="qty-btn" onclick="changeQty('The Royal', 16.99, -1)">−</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- PIZZA -->
+<div class="section" id="pizza">
+  <div class="section-title">🍕 Pizza</div>
+  <div class="items-grid">
+    <div class="item-card" id="card-margherita">
+      <div class="item-info">
+        <div class="item-name">Margherita</div>
+        <div class="item-desc">Classic tomato sauce, fresh mozzarella, basil leaves</div>
+        <div class="item-price">6.99 <span>JD</span></div>
+      </div>
+      <div class="qty-control">
+        <button class="qty-btn" onclick="changeQty('Margherita', 6.99, 1)">+</button>
+        <div class="qty-num" id="qty-Margherita">0</div>
+        <button class="qty-btn" onclick="changeQty('Margherita', 6.99, -1)">−</button>
+      </div>
+    </div>
+    <div class="item-card" id="card-pepperoni">
+      <div class="item-info">
+        <div class="item-name">Pepperoni</div>
+        <div class="item-desc">Tomato sauce, mozzarella, premium pepperoni slices</div>
+        <div class="item-price">8.99 <span>JD</span></div>
+      </div>
+      <div class="qty-control">
+        <button class="qty-btn" onclick="changeQty('Pepperoni', 8.99, 1)">+</button>
+        <div class="qty-num" id="qty-Pepperoni">0</div>
+        <button class="qty-btn" onclick="changeQty('Pepperoni', 8.99, -1)">−</button>
+      </div>
+    </div>
+    <div class="item-card" id="card-bbq-chicken">
+      <div class="item-info">
+        <div class="item-name">BBQ Chicken</div>
+        <div class="item-desc">BBQ sauce base, grilled chicken, red onion, mozzarella, coriander</div>
+        <div class="item-price">9.49 <span>JD</span></div>
+      </div>
+      <div class="qty-control">
+        <button class="qty-btn" onclick="changeQty('BBQ Chicken', 9.49, 1)">+</button>
+        <div class="qty-num" id="qty-BBQ Chicken">0</div>
+        <button class="qty-btn" onclick="changeQty('BBQ Chicken', 9.49, -1)">−</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- PASTA -->
+<div class="section" id="pasta">
+  <div class="section-title">🍝 Pasta</div>
+  <div class="items-grid">
+    <div class="item-card" id="card-bolognese">
+      <div class="item-info">
+        <div class="item-name">Spaghetti Bolognese</div>
+        <div class="item-desc">Slow-cooked beef ragù, spaghetti, parmesan, fresh basil</div>
+        <div class="item-price">7.49 <span>JD</span></div>
+      </div>
+      <div class="qty-control">
+        <button class="qty-btn" onclick="changeQty('Spaghetti Bolognese', 7.49, 1)">+</button>
+        <div class="qty-num" id="qty-Spaghetti Bolognese">0</div>
+        <button class="qty-btn" onclick="changeQty('Spaghetti Bolognese', 7.49, -1)">−</button>
+      </div>
+    </div>
+    <div class="item-card" id="card-arrabbiata">
+      <div class="item-info">
+        <div class="item-name">Penne Arrabbiata</div>
+        <div class="item-desc">Spicy tomato sauce, garlic, penne, fresh parsley</div>
+        <div class="item-price">6.99 <span>JD</span></div>
+      </div>
+      <div class="qty-control">
+        <button class="qty-btn" onclick="changeQty('Penne Arrabbiata', 6.99, 1)">+</button>
+        <div class="qty-num" id="qty-Penne Arrabbiata">0</div>
+        <button class="qty-btn" onclick="changeQty('Penne Arrabbiata', 6.99, -1)">−</button>
+      </div>
+    </div>
+    <div class="item-card" id="card-mushroom">
+      <div class="item-info">
+        <div class="item-name">Creamy Mushroom</div>
+        <div class="item-desc">Sautéed mushrooms, cream sauce, garlic, parmesan, fettuccine</div>
+        <div class="item-price">7.99 <span>JD</span></div>
+      </div>
+      <div class="qty-control">
+        <button class="qty-btn" onclick="changeQty('Creamy Mushroom', 7.99, 1)">+</button>
+        <div class="qty-num" id="qty-Creamy Mushroom">0</div>
+        <button class="qty-btn" onclick="changeQty('Creamy Mushroom', 7.99, -1)">−</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- DRINKS -->
+<div class="section" id="drinks">
+  <div class="section-title">🥤 Drinks</div>
+  <div class="items-grid">
+    <div class="item-card" id="card-soft-drinks">
+      <div class="item-info">
+        <div class="item-name">Soft Drinks</div>
+        <div class="item-desc">Pepsi, 7UP, or Miranda — your choice</div>
+        <div class="item-price">1.50 <span>JD</span></div>
+      </div>
+      <div class="qty-control">
+        <button class="qty-btn" onclick="changeQty('Soft Drinks', 1.50, 1)">+</button>
+        <div class="qty-num" id="qty-Soft Drinks">0</div>
+        <button class="qty-btn" onclick="changeQty('Soft Drinks', 1.50, -1)">−</button>
+      </div>
+    </div>
+    <div class="item-card" id="card-fresh-juice">
+      <div class="item-info">
+        <div class="item-name">Fresh Juice</div>
+        <div class="item-desc">Orange, watermelon, or lemon mint — freshly squeezed</div>
+        <div class="item-price">2.99 <span>JD</span></div>
+      </div>
+      <div class="qty-control">
+        <button class="qty-btn" onclick="changeQty('Fresh Juice', 2.99, 1)">+</button>
+        <div class="qty-num" id="qty-Fresh Juice">0</div>
+        <button class="qty-btn" onclick="changeQty('Fresh Juice', 2.99, -1)">−</button>
+      </div>
+    </div>
+    <div class="item-card" id="card-water">
+      <div class="item-info">
+        <div class="item-name">Water</div>
+        <div class="item-desc">Still water bottle 500ml</div>
+        <div class="item-price">0.75 <span>JD</span></div>
+      </div>
+      <div class="qty-control">
+        <button class="qty-btn" onclick="changeQty('Water', 0.75, 1)">+</button>
+        <div class="qty-num" id="qty-Water">0</div>
+        <button class="qty-btn" onclick="changeQty('Water', 0.75, -1)">−</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="bottom-spacer"></div>
+<footer>© 2025 Miniresto · Powered by Mino 🍽️</footer>
+
+<!-- OVERLAY -->
+<div class="overlay" id="overlay" onclick="toggleCart()"></div>
+
+<!-- CART PANEL -->
+<div class="cart-panel" id="cartPanel">
+  <div class="cart-header">
+    <h2>🛒 Your Order</h2>
+    <button class="close-btn" onclick="toggleCart()">✕</button>
+  </div>
+  <div id="cartItems">
+    <div class="empty-cart">No items yet. Add something delicious! 🍽️</div>
+  </div>
+  <div id="cartFooter" style="display:none">
+    <div class="cart-total">
+      <div class="cart-total-label">Total</div>
+      <div class="cart-total-amount" id="cartTotal">0.00 JD</div>
+    </div>
+    <button class="order-btn" onclick="sendToTelegram()">
+      ✈️ Order via Telegram
+    </button>
+  </div>
+</div>
+
+<script>
+  // ⚠️ REPLACE THIS with your actual bot username
+  const BOT_USERNAME = 'n8n_soc_alert_bot';
+
+  let cart = {};
+
+  function changeQty(name, price, delta) {
+    if (!cart[name]) cart[name] = { price, qty: 0 };
+    cart[name].qty = Math.max(0, cart[name].qty + delta);
+    if (cart[name].qty === 0) delete cart[name];
+    updateUI(name);
+    updateCart();
+  }
+
+  function updateUI(name) {
+    const el = document.getElementById('qty-' + name);
+    if (el) el.textContent = cart[name] ? cart[name].qty : 0;
+  }
+
+  function updateCart() {
+    const total = Object.values(cart).reduce((s, i) => s + i.price * i.qty, 0);
+    const count = Object.values(cart).reduce((s, i) => s + i.qty, 0);
+    document.getElementById('cartCount').textContent = count;
+
+    const itemsEl = document.getElementById('cartItems');
+    const footerEl = document.getElementById('cartFooter');
+
+    if (count === 0) {
+      itemsEl.innerHTML = '<div class="empty-cart">No items yet. Add something delicious! 🍽️</div>';
+      footerEl.style.display = 'none';
+    } else {
+      itemsEl.innerHTML = Object.entries(cart).map(([name, { price, qty }]) => `
+        <div class="cart-item">
+          <div>
+            <div class="cart-item-name">${name}</div>
+            <div class="cart-item-qty">x${qty} × ${price.toFixed(2)} JD</div>
+          </div>
+          <div class="cart-item-price">${(price * qty).toFixed(2)} JD</div>
+        </div>
+      `).join('');
+      document.getElementById('cartTotal').textContent = total.toFixed(2) + ' JD';
+      footerEl.style.display = 'block';
+    }
+  }
+
+  function toggleCart() {
+    const panel = document.getElementById('cartPanel');
+    const overlay = document.getElementById('overlay');
+    panel.classList.toggle('open');
+    overlay.classList.toggle('show');
+  }
+
+  function sendToTelegram() {
+    const count = Object.values(cart).reduce((s, i) => s + i.qty, 0);
+    if (count === 0) return;
+
+    // Build order string: "order_ClassicSmash-x2_Pepperoni-x1"
+    const orderParts = Object.entries(cart)
+      .map(([name, { qty }]) => `${name.replace(/\s+/g, '-')}-x${qty}`)
+      .join('_');
+
+    const startParam = 'order_' + orderParts;
+    const url = `https://t.me/${BOT_USERNAME}?start=${encodeURIComponent(startParam)}`;
+    window.open(url, '_blank');
+  }
+
+  function scrollTo(id, tabEl) {
+    document.getElementById(id).scrollIntoView({ behavior: 'smooth', block: 'start' });
+    document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+    tabEl.classList.add('active');
+  }
+</script>
+</body>
+</html>
