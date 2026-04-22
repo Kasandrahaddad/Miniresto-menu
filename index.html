@@ -558,10 +558,8 @@
       .join('_');
     const orderText = 'order_' + orderParts;
     // tg:// deep link works on mobile and auto-sends the start command
-    const tgDeepLink = `tg://resolve?domain=${BOT_USERNAME}&start=${encodeURIComponent(orderText)}`;
-    const tgWebLink = `https://t.me/${BOT_USERNAME}?start=${encodeURIComponent(orderText)}`;
-    window.location.href = tgDeepLink;
-    setTimeout(() => { window.open(tgWebLink, '_blank'); }, 1500);
+    const url = `https://t.me/${BOT_USERNAME}?start=${encodeURIComponent(orderText)}`;
+    window.open(url, '_blank');
   }
 
   function scrollToSection(id, tabEl) {
