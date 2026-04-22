@@ -551,7 +551,11 @@
     const count = Object.values(cart).reduce((s, i) => s + i.qty, 0);
     if (count === 0) return;
     const orderParts = Object.entries(cart)
-      .map(([name, { qty }]) => `${name.replace(/\s+/g, '-')}-x${qty}`)
+      .map(([name, { qty }]) => {
+        // Remove emojis and trim, then replace spaces with dashes
+        const cleanName = name.replace(/[\u{1F000}-\u{1FFFF}]|[\u{2600}-\u{27FF}]|[\u{FE00}-\u{FEFF}]|[\u{1F900}-\u{1F9FF}]/gu, '').trim().replace(/\s+/g, '-');
+        return `${cleanName}-x${qty}`;
+      })
       .join('_');
     const orderText = 'order_' + orderParts;
     const url = `https://t.me/${BOT_USERNAME}?start=${encodeURIComponent(orderText)}`;
