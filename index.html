@@ -554,7 +554,7 @@
       .map(([name, { qty }]) => `${name.replace(/\s+/g, '-')}-x${qty}`)
       .join('_');
     const orderText = 'order_' + orderParts;
-    const url = `https://t.me/${BOT_USERNAME}?text=${encodeURIComponent(orderText)}`;
+    const url = `https://t.me/${BOT_USERNAME}?start=${encodeURIComponent(orderText)}`;
     window.open(url, '_blank');
   }
 
