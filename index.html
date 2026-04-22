@@ -557,9 +557,19 @@
       })
       .join('_');
     const orderText = 'order_' + orderParts;
-    // tg:// deep link works on mobile and auto-sends the start command
-    const url = `https://t.me/${BOT_USERNAME}?start=${encodeURIComponent(orderText)}`;
-    window.open(url, '_blank');
+    // Use tg://msg_url to pre-fill the message in Telegram chat box
+    const encoded = encodeURIComponent(orderText);
+    const tgApp = `tg://msg?to=${BOT_USERNAME}&text=${encoded}`;
+    const tgWeb = `https://t.me/${BOT_USERNAME}?start=${encoded}`;
+    // Try native app first, fallback to web
+    const iframe = document.createElement('iframe');
+    iframe.style.display = 'none';
+    iframe.src = tgApp;
+    document.body.appendChild(iframe);
+    setTimeout(() => {
+      document.body.removeChild(iframe);
+      window.open(tgWeb, '_blank');
+    }, 500);
   }
 
   function scrollToSection(id, tabEl) {
