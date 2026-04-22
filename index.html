@@ -311,7 +311,7 @@
 </div>
 
 <div class="bottom-spacer"></div>
-<footer>© 2026 Miniresto · Powered by Mino 🍽️</footer>
+<footer>© 2025 Miniresto · Powered by Mino 🍽️</footer>
 
 <div class="overlay" id="overlay" onclick="toggleCart()"></div>
 
@@ -551,25 +551,11 @@
     const count = Object.values(cart).reduce((s, i) => s + i.qty, 0);
     if (count === 0) return;
     const orderParts = Object.entries(cart)
-      .map(([name, { qty }]) => {
-        const cleanName = name.replace(/[\u{1F000}-\u{1FFFF}]|[\u{2600}-\u{27FF}]|[\u{FE00}-\u{FEFF}]|[\u{1F900}-\u{1F9FF}]/gu, '').trim().replace(/\s+/g, '-');
-        return `${cleanName}-x${qty}`;
-      })
+      .map(([name, { qty }]) => `${name.replace(/\s+/g, '-')}-x${qty}`)
       .join('_');
     const orderText = 'order_' + orderParts;
-    // Use tg://msg_url to pre-fill the message in Telegram chat box
-    const encoded = encodeURIComponent(orderText);
-    const tgApp = `tg://msg?to=${BOT_USERNAME}&text=${encoded}`;
-    const tgWeb = `https://t.me/${BOT_USERNAME}?start=${encoded}`;
-    // Try native app first, fallback to web
-    const iframe = document.createElement('iframe');
-    iframe.style.display = 'none';
-    iframe.src = tgApp;
-    document.body.appendChild(iframe);
-    setTimeout(() => {
-      document.body.removeChild(iframe);
-      window.open(tgWeb, '_blank');
-    }, 500);
+    const url = `https://t.me/${BOT_USERNAME}?text=${encodeURIComponent(orderText)}`;
+    window.open(url, '_blank');
   }
 
   function scrollToSection(id, tabEl) {
