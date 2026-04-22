@@ -552,14 +552,16 @@
     if (count === 0) return;
     const orderParts = Object.entries(cart)
       .map(([name, { qty }]) => {
-        // Remove emojis and trim, then replace spaces with dashes
         const cleanName = name.replace(/[\u{1F000}-\u{1FFFF}]|[\u{2600}-\u{27FF}]|[\u{FE00}-\u{FEFF}]|[\u{1F900}-\u{1F9FF}]/gu, '').trim().replace(/\s+/g, '-');
         return `${cleanName}-x${qty}`;
       })
       .join('_');
     const orderText = 'order_' + orderParts;
-    const url = `https://t.me/${BOT_USERNAME}?start=${encodeURIComponent(orderText)}`;
-    window.open(url, '_blank');
+    // tg:// deep link works on mobile and auto-sends the start command
+    const tgDeepLink = `tg://resolve?domain=${BOT_USERNAME}&start=${encodeURIComponent(orderText)}`;
+    const tgWebLink = `https://t.me/${BOT_USERNAME}?start=${encodeURIComponent(orderText)}`;
+    window.location.href = tgDeepLink;
+    setTimeout(() => { window.open(tgWebLink, '_blank'); }, 1500);
   }
 
   function scrollToSection(id, tabEl) {
