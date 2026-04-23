@@ -549,13 +549,35 @@
     document.getElementById('overlay').classList.toggle('show');
   }
 
-  function sendToTelegram() {
+  async function sendToTelegram() {
     const count = Object.values(cart).reduce((s, i) => s + i.qty, 0);
     if (count === 0) return;
 
-    const orderParts = Object.entries(cart)
-      .map(([name, { qty }]) => name.replace(/\s+/g, '-') + '-x' + qty)
-      .join('_');
+    const urlParams = new URLSearchParams(window.location.search);
+    const chat_id = urlParams.get('chat_id');
+
+    const items = Object.entries(cart).map(([name, { price, qty }]) => ({
+      name,
+      price,
+      qty,
+      subtotal: parseFloat((price * qty).toFixed(2))
+    }));
+
+    const total = parseFloat(
+      Object.values(cart).reduce((s, i) => s + i.price * i.qty, 0).toFixed(2)
+    );
+
+    const payload = { items, total, chat_id };
+
+    await fetch('https://incisive-ambiguously-matilda.ngrok-free.dev/webhook/miniresto-order', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload)
+    });
+
+    alert('Order sent! Check your Telegram for confirmation. 🎉');
+    toggleCart();
+  }
 
     const startParam = 'order_' + orderParts;
     const url = 'https://t.me/' + BOT_USERNAME + '?start=' + encodeURIComponent(startParam);
