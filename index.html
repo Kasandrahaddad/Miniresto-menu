@@ -550,15 +550,18 @@
   function sendToTelegram() {
     const count = Object.values(cart).reduce((s, i) => s + i.qty, 0);
     if (count === 0) return;
+
+    // Build order string: "order_ClassicSmash-x2_Pepperoni-x1"
     const orderParts = Object.entries(cart)
       .map(([name, { qty }]) => `${name.replace(/\s+/g, '-')}-x${qty}`)
       .join('_');
-    const orderText = 'order_' + orderParts;
-    const url = `https://t.me/${BOT_USERNAME}?start=${encodeURIComponent(orderText)}`;
+
+    const startParam = 'order_' + orderParts;
+    const url = `https://t.me/${BOT_USERNAME}?start=${encodeURIComponent(startParam)}`;
     window.open(url, '_blank');
   }
 
-  function scrollToSection(id, tabEl) {
+  function scrollTo(id, tabEl) {
     document.getElementById(id).scrollIntoView({ behavior: 'smooth', block: 'start' });
     document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
     tabEl.classList.add('active');
