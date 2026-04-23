@@ -16,6 +16,7 @@
     --red: #c0392b;
     --text: #f0ead8;
     --muted: #8a8070;
+    --white: #ffffff;
   }
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -28,6 +29,7 @@
     overflow-x: hidden;
   }
 
+  /* HEADER */
   header {
     background: var(--surface);
     border-bottom: 1px solid var(--border);
@@ -40,171 +42,354 @@
     justify-content: space-between;
   }
 
-  .logo { font-family: 'Playfair Display', serif; font-size: 26px; font-weight: 900; color: var(--gold); letter-spacing: 1px; }
-  .logo span { color: var(--text); font-weight: 700; }
+  .logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 26px;
+    font-weight: 900;
+    color: var(--gold);
+    letter-spacing: 1px;
+  }
+
+  .logo span {
+    color: var(--text);
+    font-weight: 700;
+  }
 
   .cart-btn {
-    background: var(--gold); color: #0f0e0c; border: none;
-    padding: 10px 20px; border-radius: 50px;
-    font-family: 'DM Sans', sans-serif; font-weight: 500; font-size: 14px;
-    cursor: pointer; display: flex; align-items: center; gap: 8px; transition: background 0.2s;
+    background: var(--gold);
+    color: #0f0e0c;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 50px;
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 500;
+    font-size: 14px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: background 0.2s;
   }
+
   .cart-btn:hover { background: var(--gold-light); }
 
   .cart-count {
-    background: var(--red); color: white; border-radius: 50%;
-    width: 20px; height: 20px; font-size: 11px;
-    display: flex; align-items: center; justify-content: center; font-weight: 700;
+    background: var(--red);
+    color: white;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    font-size: 11px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
   }
 
+  /* HERO */
   .hero {
-    padding: 48px 24px 32px; text-align: center;
+    padding: 48px 24px 32px;
+    text-align: center;
     background: radial-gradient(ellipse at top, #2a2418 0%, var(--bg) 70%);
   }
-  .hero h1 { font-family: 'Playfair Display', serif; font-size: clamp(36px, 8vw, 64px); font-weight: 900; line-height: 1.1; margin-bottom: 12px; }
-  .hero h1 span { color: var(--gold); }
-  .hero p { color: var(--muted); font-size: 15px; font-weight: 300; }
 
-  .tabs { display: flex; gap: 8px; padding: 24px 24px 0; overflow-x: auto; scrollbar-width: none; }
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(36px, 8vw, 64px);
+    font-weight: 900;
+    line-height: 1.1;
+    margin-bottom: 12px;
+  }
+
+  .hero h1 span { color: var(--gold); }
+
+  .hero p {
+    color: var(--muted);
+    font-size: 15px;
+    font-weight: 300;
+  }
+
+  /* CATEGORY TABS */
+  .tabs {
+    display: flex;
+    gap: 8px;
+    padding: 24px 24px 0;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+
   .tabs::-webkit-scrollbar { display: none; }
 
   .tab {
-    background: var(--card); border: 1px solid var(--border); color: var(--muted);
-    padding: 10px 20px; border-radius: 50px; font-size: 13px; font-weight: 500;
-    cursor: pointer; white-space: nowrap; transition: all 0.2s; font-family: 'DM Sans', sans-serif;
+    background: var(--card);
+    border: 1px solid var(--border);
+    color: var(--muted);
+    padding: 10px 20px;
+    border-radius: 50px;
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: all 0.2s;
+    font-family: 'DM Sans', sans-serif;
   }
-  .tab:hover, .tab.active { background: var(--gold); border-color: var(--gold); color: #0f0e0c; }
 
-  .section { padding: 32px 24px 0; }
+  .tab:hover, .tab.active {
+    background: var(--gold);
+    border-color: var(--gold);
+    color: #0f0e0c;
+  }
+
+  /* SECTIONS */
+  .section {
+    padding: 32px 24px 0;
+  }
 
   .section-title {
-    font-family: 'Playfair Display', serif; font-size: 22px; font-weight: 700;
-    color: var(--gold); margin-bottom: 20px; display: flex; align-items: center; gap: 10px;
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--gold);
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
   }
 
-  .items-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 16px; margin-bottom: 8px; }
+  /* ITEMS GRID */
+  .items-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 16px;
+    margin-bottom: 8px;
+  }
 
   .item-card {
-    background: var(--card); border: 1px solid var(--border); border-radius: 16px;
-    padding: 20px; display: flex; justify-content: space-between; align-items: flex-start;
-    gap: 16px; transition: border-color 0.2s, transform 0.2s;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 16px;
+    transition: border-color 0.2s, transform 0.2s;
   }
-  .item-card:hover { border-color: var(--gold); transform: translateY(-2px); }
-  .item-card.in-cart { border-color: var(--gold); background: #221f16; }
+
+  .item-card:hover {
+    border-color: var(--gold);
+    transform: translateY(-2px);
+  }
+
+  .item-card.in-cart {
+    border-color: var(--gold);
+    background: #221f16;
+  }
 
   .item-info { flex: 1; }
-  .item-name { font-weight: 500; font-size: 16px; margin-bottom: 6px; color: var(--text); }
-  .item-desc { font-size: 12px; color: var(--muted); line-height: 1.5; margin-bottom: 10px; font-weight: 300; }
-  .item-price { font-family: 'Playfair Display', serif; font-size: 18px; font-weight: 700; color: var(--gold); }
-  .item-price span { font-family: 'DM Sans', sans-serif; font-size: 12px; font-weight: 400; color: var(--muted); }
 
-  .qty-control { display: flex; flex-direction: column; align-items: center; gap: 6px; min-width: 36px; }
+  .item-name {
+    font-weight: 500;
+    font-size: 16px;
+    margin-bottom: 6px;
+    color: var(--text);
+  }
+
+  .item-desc {
+    font-size: 12px;
+    color: var(--muted);
+    line-height: 1.5;
+    margin-bottom: 10px;
+    font-weight: 300;
+  }
+
+  .item-price {
+    font-family: 'Playfair Display', serif;
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--gold);
+  }
+
+  .item-price span {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 12px;
+    font-weight: 400;
+    color: var(--muted);
+  }
+
+  /* QTY CONTROL */
+  .qty-control {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    min-width: 36px;
+  }
 
   .qty-btn {
-    width: 32px; height: 32px; border-radius: 50%;
-    border: 1px solid var(--border); background: var(--surface); color: var(--text);
-    font-size: 18px; cursor: pointer; display: flex; align-items: center; justify-content: center;
-    transition: all 0.15s; line-height: 1;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    border: 1px solid var(--border);
+    background: var(--surface);
+    color: var(--text);
+    font-size: 18px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.15s;
+    font-family: 'DM Sans', sans-serif;
+    line-height: 1;
   }
+
   .qty-btn:hover { background: var(--gold); color: #0f0e0c; border-color: var(--gold); }
   .qty-btn.add { background: var(--gold); color: #0f0e0c; border-color: var(--gold); }
+  .qty-btn.add:hover { background: var(--gold-light); }
 
-  .qty-num { font-weight: 700; font-size: 15px; color: var(--gold); min-width: 20px; text-align: center; }
-
-  /* MODAL */
-  .modal-overlay {
-    position: fixed; inset: 0; background: rgba(0,0,0,0.78);
-    z-index: 300; display: none; align-items: center; justify-content: center; padding: 24px;
+  .qty-num {
+    font-weight: 700;
+    font-size: 15px;
+    color: var(--gold);
+    min-width: 20px;
+    text-align: center;
   }
-  .modal-overlay.show { display: flex; }
-
-  .modal {
-    background: var(--surface); border: 1px solid var(--border); border-radius: 20px;
-    padding: 28px 24px; width: 100%; max-width: 420px; animation: popIn 0.2s ease;
-    max-height: 90vh; overflow-y: auto;
-  }
-
-  @keyframes popIn { from { transform: scale(0.92); opacity: 0; } to { transform: scale(1); opacity: 1; } }
-
-  .modal-title { font-family: 'Playfair Display', serif; font-size: 20px; color: var(--gold); margin-bottom: 4px; }
-  .modal-subtitle { font-size: 13px; color: var(--muted); margin-bottom: 16px; }
-
-  .modal-section-label {
-    font-size: 11px; font-weight: 500; color: var(--muted);
-    text-transform: uppercase; letter-spacing: 0.8px; margin: 16px 0 8px;
-  }
-
-  .options-grid { display: flex; flex-wrap: wrap; gap: 8px; }
-
-  .option-btn {
-    background: var(--card); border: 1.5px solid var(--border); color: var(--text);
-    padding: 9px 14px; border-radius: 10px; font-size: 13px; cursor: pointer;
-    transition: all 0.15s; font-family: 'DM Sans', sans-serif;
-  }
-  .option-btn:hover { border-color: var(--gold); color: var(--gold); }
-  .option-btn.selected { background: var(--gold); border-color: var(--gold); color: #0f0e0c; font-weight: 500; }
-
-  .modal-actions { display: flex; gap: 10px; margin-top: 22px; }
-
-  .modal-cancel {
-    flex: 1; background: var(--card); border: 1px solid var(--border); color: var(--muted);
-    padding: 12px; border-radius: 12px; font-size: 14px; cursor: pointer; font-family: 'DM Sans', sans-serif;
-  }
-
-  .modal-confirm {
-    flex: 2; background: var(--gold); border: none; color: #0f0e0c;
-    padding: 12px; border-radius: 12px; font-size: 14px; font-weight: 600;
-    cursor: pointer; font-family: 'DM Sans', sans-serif; transition: background 0.2s;
-  }
-  .modal-confirm:hover { background: var(--gold-light); }
 
   /* CART PANEL */
   .cart-panel {
-    position: fixed; bottom: 0; left: 0; right: 0;
-    background: var(--surface); border-top: 1px solid var(--border);
-    padding: 20px 24px; transform: translateY(100%); transition: transform 0.3s ease;
-    z-index: 200; max-height: 70vh; overflow-y: auto; border-radius: 24px 24px 0 0;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: var(--surface);
+    border-top: 1px solid var(--border);
+    padding: 20px 24px;
+    transform: translateY(100%);
+    transition: transform 0.3s ease;
+    z-index: 200;
+    max-height: 70vh;
+    overflow-y: auto;
+    border-radius: 24px 24px 0 0;
   }
+
   .cart-panel.open { transform: translateY(0); }
 
-  .cart-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
-  .cart-header h2 { font-family: 'Playfair Display', serif; font-size: 20px; color: var(--gold); }
+  .cart-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+
+  .cart-header h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 20px;
+    color: var(--gold);
+  }
 
   .close-btn {
-    background: var(--card); border: 1px solid var(--border); color: var(--text);
-    width: 32px; height: 32px; border-radius: 50%; cursor: pointer; font-size: 16px;
-    display: flex; align-items: center; justify-content: center;
+    background: var(--card);
+    border: 1px solid var(--border);
+    color: var(--text);
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 
-  .cart-item { display: flex; justify-content: space-between; align-items: center; padding: 12px 0; border-bottom: 1px solid var(--border); }
+  .cart-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 0;
+    border-bottom: 1px solid var(--border);
+  }
+
   .cart-item-name { font-size: 14px; font-weight: 500; }
   .cart-item-qty { font-size: 13px; color: var(--muted); }
-  .cart-item-price { font-size: 14px; color: var(--gold); font-weight: 500; white-space: nowrap; }
+  .cart-item-price { font-size: 14px; color: var(--gold); font-weight: 500; }
 
-  .cart-total { display: flex; justify-content: space-between; align-items: center; padding: 16px 0 0; }
-  .cart-total-label { font-family: 'Playfair Display', serif; font-size: 18px; }
-  .cart-total-amount { font-family: 'Playfair Display', serif; font-size: 22px; color: var(--gold); font-weight: 700; }
+  .cart-total {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px 0 0;
+    margin-top: 4px;
+  }
+
+  .cart-total-label {
+    font-family: 'Playfair Display', serif;
+    font-size: 18px;
+  }
+
+  .cart-total-amount {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    color: var(--gold);
+    font-weight: 700;
+  }
 
   .order-btn {
-    width: 100%; background: var(--gold); color: #0f0e0c; border: none;
-    padding: 16px; border-radius: 14px; font-family: 'Playfair Display', serif;
-    font-size: 18px; font-weight: 700; cursor: pointer; margin-top: 16px;
-    display: flex; align-items: center; justify-content: center; gap: 10px; transition: background 0.2s;
+    width: 100%;
+    background: var(--gold);
+    color: #0f0e0c;
+    border: none;
+    padding: 16px;
+    border-radius: 14px;
+    font-family: 'Playfair Display', serif;
+    font-size: 18px;
+    font-weight: 700;
+    cursor: pointer;
+    margin-top: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    transition: background 0.2s;
+    letter-spacing: 0.5px;
   }
+
   .order-btn:hover { background: var(--gold-light); }
 
-  .empty-cart { text-align: center; color: var(--muted); padding: 32px 0; font-size: 14px; }
-
-  .overlay {
-    position: fixed; inset: 0; background: rgba(0,0,0,0.6);
-    z-index: 150; opacity: 0; pointer-events: none; transition: opacity 0.3s;
+  .empty-cart {
+    text-align: center;
+    color: var(--muted);
+    padding: 32px 0;
+    font-size: 14px;
   }
+
+  /* OVERLAY */
+  .overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.6);
+    z-index: 150;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s;
+  }
+
   .overlay.show { opacity: 1; pointer-events: all; }
 
+  /* BOTTOM PADDING */
   .bottom-spacer { height: 120px; }
-  footer { text-align: center; padding: 16px; color: var(--muted); font-size: 12px; border-top: 1px solid var(--border); }
 
-  @media (max-width: 480px) { .items-grid { grid-template-columns: 1fr; } }
+  /* FOOTER */
+  footer {
+    text-align: center;
+    padding: 16px;
+    color: var(--muted);
+    font-size: 12px;
+    border-top: 1px solid var(--border);
+  }
+
+  @media (max-width: 480px) {
+    .items-grid { grid-template-columns: 1fr; }
+  }
 </style>
 </head>
 <body>
@@ -223,25 +408,76 @@
 </div>
 
 <div class="tabs">
-  <div class="tab active" onclick="scrollToSection('burgers', this)">🍔 Burgers</div>
-  <div class="tab" onclick="scrollToSection('pizza', this)">🍕 Pizza</div>
-  <div class="tab" onclick="scrollToSection('pasta', this)">🍝 Pasta</div>
-  <div class="tab" onclick="scrollToSection('sides', this)">🍟 Sides</div>
-  <div class="tab" onclick="scrollToSection('sauces', this)">🥫 Sauces</div>
-  <div class="tab" onclick="scrollToSection('drinks', this)">🥤 Drinks</div>
+  <div class="tab active" onclick="scrollTo('burgers', this)">🍔 Burgers</div>
+  <div class="tab" onclick="scrollTo('pizza', this)">🍕 Pizza</div>
+  <div class="tab" onclick="scrollTo('pasta', this)">🍝 Pasta</div>
+  <div class="tab" onclick="scrollTo('drinks', this)">🥤 Drinks</div>
 </div>
 
 <!-- BURGERS -->
 <div class="section" id="burgers">
   <div class="section-title">🍔 Burgers</div>
   <div class="items-grid">
-    <div class="item-card"><div class="item-info"><div class="item-name">Classic Smash</div><div class="item-desc">Smashed beef patty, American cheese, pickles, onion, special sauce</div><div class="item-price">5.99 <span>JD</span></div></div><div class="qty-control"><button class="qty-btn add" onclick="openModal('Classic Smash',5.99,'burger')">+</button><div class="qty-num" id="qty-display-Classic Smash">0</div><button class="qty-btn" onclick="removeItem('Classic Smash')">−</button></div></div>
-    <div class="item-card"><div class="item-info"><div class="item-name">Bacon Boss</div><div class="item-desc">Beef patty, crispy streaky bacon, BBQ sauce, aged cheddar, lettuce, tomato</div><div class="item-price">9.49 <span>JD</span></div></div><div class="qty-control"><button class="qty-btn add" onclick="openModal('Bacon Boss',9.49,'burger')">+</button><div class="qty-num" id="qty-display-Bacon Boss">0</div><button class="qty-btn" onclick="removeItem('Bacon Boss')">−</button></div></div>
-    <div class="item-card"><div class="item-info"><div class="item-name">Inferno Burger 🌶️</div><div class="item-desc">Double patty, ghost pepper sauce, jalapeños, pepper jack cheese, crispy onions</div><div class="item-price">8.49 <span>JD</span></div></div><div class="qty-control"><button class="qty-btn add" onclick="openModal('Inferno Burger',8.49,'burger')">+</button><div class="qty-num" id="qty-display-Inferno Burger">0</div><button class="qty-btn" onclick="removeItem('Inferno Burger')">−</button></div></div>
-    <div class="item-card"><div class="item-info"><div class="item-name">Triple Cheese Stack</div><div class="item-desc">Triple patty, cheddar, gouda & brie, caramelized onions, truffle aioli</div><div class="item-price">11.99 <span>JD</span></div></div><div class="qty-control"><button class="qty-btn add" onclick="openModal('Triple Cheese Stack',11.99,'burger')">+</button><div class="qty-num" id="qty-display-Triple Cheese Stack">0</div><button class="qty-btn" onclick="removeItem('Triple Cheese Stack')">−</button></div></div>
-    <div class="item-card"><div class="item-info"><div class="item-name">The Royal 👑</div><div class="item-desc">Double wagyu patty, foie gras sauce, aged cheddar, gold brioche bun</div><div class="item-price">16.99 <span>JD</span></div></div><div class="qty-control"><button class="qty-btn add" onclick="openModal('The Royal',16.99,'burger')">+</button><div class="qty-num" id="qty-display-The Royal">0</div><button class="qty-btn" onclick="removeItem('The Royal')">−</button></div></div>
-    <div class="item-card"><div class="item-info"><div class="item-name">Mushroom Swiss</div><div class="item-desc">Beef patty, sautéed mushrooms, Swiss cheese, garlic mayo, brioche bun</div><div class="item-price">9.99 <span>JD</span></div></div><div class="qty-control"><button class="qty-btn add" onclick="openModal('Mushroom Swiss',9.99,'burger')">+</button><div class="qty-num" id="qty-display-Mushroom Swiss">0</div><button class="qty-btn" onclick="removeItem('Mushroom Swiss')">−</button></div></div>
-    <div class="item-card"><div class="item-info"><div class="item-name">Crispy Chicken Burger 🍗</div><div class="item-desc">Crispy fried chicken breast, coleslaw, pickles, honey mustard, sesame bun</div><div class="item-price">7.99 <span>JD</span></div></div><div class="qty-control"><button class="qty-btn add" onclick="openModal('Crispy Chicken Burger',7.99,'burger')">+</button><div class="qty-num" id="qty-display-Crispy Chicken Burger">0</div><button class="qty-btn" onclick="removeItem('Crispy Chicken Burger')">−</button></div></div>
+    <div class="item-card" id="card-classic-smash">
+      <div class="item-info">
+        <div class="item-name">Classic Smash</div>
+        <div class="item-desc">Smashed beef patty, American cheese, pickles, onion, special sauce</div>
+        <div class="item-price">5.99 <span>JD</span></div>
+      </div>
+      <div class="qty-control">
+        <button class="qty-btn" onclick="changeQty('Classic Smash', 5.99, 1)">+</button>
+        <div class="qty-num" id="qty-Classic Smash">0</div>
+        <button class="qty-btn" onclick="changeQty('Classic Smash', 5.99, -1)">−</button>
+      </div>
+    </div>
+    <div class="item-card" id="card-bacon-boss">
+      <div class="item-info">
+        <div class="item-name">Bacon Boss</div>
+        <div class="item-desc">Beef patty, crispy streaky bacon, BBQ sauce, aged cheddar, lettuce, tomato</div>
+        <div class="item-price">9.49 <span>JD</span></div>
+      </div>
+      <div class="qty-control">
+        <button class="qty-btn" onclick="changeQty('Bacon Boss', 9.49, 1)">+</button>
+        <div class="qty-num" id="qty-Bacon Boss">0</div>
+        <button class="qty-btn" onclick="changeQty('Bacon Boss', 9.49, -1)">−</button>
+      </div>
+    </div>
+    <div class="item-card" id="card-inferno-burger">
+      <div class="item-info">
+        <div class="item-name">Inferno Burger 🌶️</div>
+        <div class="item-desc">Double patty, ghost pepper sauce, jalapeños, pepper jack cheese, crispy onions</div>
+        <div class="item-price">8.49 <span>JD</span></div>
+      </div>
+      <div class="qty-control">
+        <button class="qty-btn" onclick="changeQty('Inferno Burger', 8.49, 1)">+</button>
+        <div class="qty-num" id="qty-Inferno Burger">0</div>
+        <button class="qty-btn" onclick="changeQty('Inferno Burger', 8.49, -1)">−</button>
+      </div>
+    </div>
+    <div class="item-card" id="card-triple-cheese">
+      <div class="item-info">
+        <div class="item-name">Triple Cheese Stack</div>
+        <div class="item-desc">Triple patty, cheddar, gouda & brie, caramelized onions, truffle aioli</div>
+        <div class="item-price">11.99 <span>JD</span></div>
+      </div>
+      <div class="qty-control">
+        <button class="qty-btn" onclick="changeQty('Triple Cheese Stack', 11.99, 1)">+</button>
+        <div class="qty-num" id="qty-Triple Cheese Stack">0</div>
+        <button class="qty-btn" onclick="changeQty('Triple Cheese Stack', 11.99, -1)">−</button>
+      </div>
+    </div>
+    <div class="item-card" id="card-the-royal">
+      <div class="item-info">
+        <div class="item-name">The Royal 👑</div>
+        <div class="item-desc">Double wagyu patty, foie gras sauce, aged cheddar, gold brioche bun</div>
+        <div class="item-price">16.99 <span>JD</span></div>
+      </div>
+      <div class="qty-control">
+        <button class="qty-btn" onclick="changeQty('The Royal', 16.99, 1)">+</button>
+        <div class="qty-num" id="qty-The Royal">0</div>
+        <button class="qty-btn" onclick="changeQty('The Royal', 16.99, -1)">−</button>
+      </div>
+    </div>
   </div>
 </div>
 
@@ -249,11 +485,42 @@
 <div class="section" id="pizza">
   <div class="section-title">🍕 Pizza</div>
   <div class="items-grid">
-    <div class="item-card"><div class="item-info"><div class="item-name">Margherita</div><div class="item-desc">Classic tomato sauce, fresh mozzarella, basil leaves</div><div class="item-price">6.99 <span>JD</span></div></div><div class="qty-control"><button class="qty-btn add" onclick="openModal('Margherita',6.99,'pizza')">+</button><div class="qty-num" id="qty-display-Margherita">0</div><button class="qty-btn" onclick="removeItem('Margherita')">−</button></div></div>
-    <div class="item-card"><div class="item-info"><div class="item-name">Pepperoni</div><div class="item-desc">Tomato sauce, mozzarella, premium pepperoni slices</div><div class="item-price">8.99 <span>JD</span></div></div><div class="qty-control"><button class="qty-btn add" onclick="openModal('Pepperoni',8.99,'pizza')">+</button><div class="qty-num" id="qty-display-Pepperoni">0</div><button class="qty-btn" onclick="removeItem('Pepperoni')">−</button></div></div>
-    <div class="item-card"><div class="item-info"><div class="item-name">BBQ Chicken Pizza</div><div class="item-desc">BBQ sauce base, grilled chicken, red onion, mozzarella, coriander</div><div class="item-price">9.49 <span>JD</span></div></div><div class="qty-control"><button class="qty-btn add" onclick="openModal('BBQ Chicken Pizza',9.49,'pizza')">+</button><div class="qty-num" id="qty-display-BBQ Chicken Pizza">0</div><button class="qty-btn" onclick="removeItem('BBQ Chicken Pizza')">−</button></div></div>
-    <div class="item-card"><div class="item-info"><div class="item-name">Four Cheese 🧀</div><div class="item-desc">Mozzarella, cheddar, gouda, parmesan, white cream base, fresh thyme</div><div class="item-price">10.49 <span>JD</span></div></div><div class="qty-control"><button class="qty-btn add" onclick="openModal('Four Cheese Pizza',10.49,'pizza')">+</button><div class="qty-num" id="qty-display-Four Cheese Pizza">0</div><button class="qty-btn" onclick="removeItem('Four Cheese Pizza')">−</button></div></div>
-    <div class="item-card"><div class="item-info"><div class="item-name">Veggie Supreme 🥦</div><div class="item-desc">Tomato sauce, mozzarella, bell peppers, mushrooms, olives, red onion, cherry tomatoes</div><div class="item-price">8.49 <span>JD</span></div></div><div class="qty-control"><button class="qty-btn add" onclick="openModal('Veggie Supreme',8.49,'pizza')">+</button><div class="qty-num" id="qty-display-Veggie Supreme">0</div><button class="qty-btn" onclick="removeItem('Veggie Supreme')">−</button></div></div>
+    <div class="item-card" id="card-margherita">
+      <div class="item-info">
+        <div class="item-name">Margherita</div>
+        <div class="item-desc">Classic tomato sauce, fresh mozzarella, basil leaves</div>
+        <div class="item-price">6.99 <span>JD</span></div>
+      </div>
+      <div class="qty-control">
+        <button class="qty-btn" onclick="changeQty('Margherita', 6.99, 1)">+</button>
+        <div class="qty-num" id="qty-Margherita">0</div>
+        <button class="qty-btn" onclick="changeQty('Margherita', 6.99, -1)">−</button>
+      </div>
+    </div>
+    <div class="item-card" id="card-pepperoni">
+      <div class="item-info">
+        <div class="item-name">Pepperoni</div>
+        <div class="item-desc">Tomato sauce, mozzarella, premium pepperoni slices</div>
+        <div class="item-price">8.99 <span>JD</span></div>
+      </div>
+      <div class="qty-control">
+        <button class="qty-btn" onclick="changeQty('Pepperoni', 8.99, 1)">+</button>
+        <div class="qty-num" id="qty-Pepperoni">0</div>
+        <button class="qty-btn" onclick="changeQty('Pepperoni', 8.99, -1)">−</button>
+      </div>
+    </div>
+    <div class="item-card" id="card-bbq-chicken">
+      <div class="item-info">
+        <div class="item-name">BBQ Chicken</div>
+        <div class="item-desc">BBQ sauce base, grilled chicken, red onion, mozzarella, coriander</div>
+        <div class="item-price">9.49 <span>JD</span></div>
+      </div>
+      <div class="qty-control">
+        <button class="qty-btn" onclick="changeQty('BBQ Chicken', 9.49, 1)">+</button>
+        <div class="qty-num" id="qty-BBQ Chicken">0</div>
+        <button class="qty-btn" onclick="changeQty('BBQ Chicken', 9.49, -1)">−</button>
+      </div>
+    </div>
   </div>
 </div>
 
@@ -261,38 +528,42 @@
 <div class="section" id="pasta">
   <div class="section-title">🍝 Pasta</div>
   <div class="items-grid">
-    <div class="item-card"><div class="item-info"><div class="item-name">Spaghetti Bolognese</div><div class="item-desc">Slow-cooked beef ragù, spaghetti, parmesan, fresh basil</div><div class="item-price">7.49 <span>JD</span></div></div><div class="qty-control"><button class="qty-btn add" onclick="openModal('Spaghetti Bolognese',7.49,'pasta')">+</button><div class="qty-num" id="qty-display-Spaghetti Bolognese">0</div><button class="qty-btn" onclick="removeItem('Spaghetti Bolognese')">−</button></div></div>
-    <div class="item-card"><div class="item-info"><div class="item-name">Penne Arrabbiata</div><div class="item-desc">Spicy tomato sauce, garlic, penne, fresh parsley</div><div class="item-price">6.99 <span>JD</span></div></div><div class="qty-control"><button class="qty-btn add" onclick="openModal('Penne Arrabbiata',6.99,'pasta')">+</button><div class="qty-num" id="qty-display-Penne Arrabbiata">0</div><button class="qty-btn" onclick="removeItem('Penne Arrabbiata')">−</button></div></div>
-    <div class="item-card"><div class="item-info"><div class="item-name">Creamy Mushroom Pasta</div><div class="item-desc">Sautéed mushrooms, cream sauce, garlic, parmesan, fettuccine</div><div class="item-price">7.99 <span>JD</span></div></div><div class="qty-control"><button class="qty-btn add" onclick="openModal('Creamy Mushroom Pasta',7.99,'pasta')">+</button><div class="qty-num" id="qty-display-Creamy Mushroom Pasta">0</div><button class="qty-btn" onclick="removeItem('Creamy Mushroom Pasta')">−</button></div></div>
-    <div class="item-card"><div class="item-info"><div class="item-name">Spaghetti Carbonara</div><div class="item-desc">Egg yolk cream, crispy pancetta, parmesan, black pepper, spaghetti</div><div class="item-price">8.49 <span>JD</span></div></div><div class="qty-control"><button class="qty-btn add" onclick="openModal('Spaghetti Carbonara',8.49,'pasta')">+</button><div class="qty-num" id="qty-display-Spaghetti Carbonara">0</div><button class="qty-btn" onclick="removeItem('Spaghetti Carbonara')">−</button></div></div>
-    <div class="item-card"><div class="item-info"><div class="item-name">Chicken Alfredo</div><div class="item-desc">Grilled chicken strips, rich alfredo sauce, fettuccine, parmesan, garlic butter</div><div class="item-price">8.99 <span>JD</span></div></div><div class="qty-control"><button class="qty-btn add" onclick="openModal('Chicken Alfredo',8.99,'pasta')">+</button><div class="qty-num" id="qty-display-Chicken Alfredo">0</div><button class="qty-btn" onclick="removeItem('Chicken Alfredo')">−</button></div></div>
-  </div>
-</div>
-
-<!-- SIDES -->
-<div class="section" id="sides">
-  <div class="section-title">🍟 Sides</div>
-  <div class="items-grid">
-    <div class="item-card"><div class="item-info"><div class="item-name">Classic Fries</div><div class="item-desc">Golden crispy fries, lightly salted, served hot</div><div class="item-price">2.49 <span>JD</span></div></div><div class="qty-control"><button class="qty-btn add" onclick="openModal('Classic Fries',2.49,'fries')">+</button><div class="qty-num" id="qty-display-Classic Fries">0</div><button class="qty-btn" onclick="removeItem('Classic Fries')">−</button></div></div>
-    <div class="item-card"><div class="item-info"><div class="item-name">Loaded Fries 🧀</div><div class="item-desc">Crispy fries topped with melted cheese sauce, jalapeños, crispy onions</div><div class="item-price">3.99 <span>JD</span></div></div><div class="qty-control"><button class="qty-btn add" onclick="openModal('Loaded Fries',3.99,'fries')">+</button><div class="qty-num" id="qty-display-Loaded Fries">0</div><button class="qty-btn" onclick="removeItem('Loaded Fries')">−</button></div></div>
-    <div class="item-card"><div class="item-info"><div class="item-name">Sweet Potato Fries 🍠</div><div class="item-desc">Crispy sweet potato fries with a hint of cinnamon, served with honey dip</div><div class="item-price">3.49 <span>JD</span></div></div><div class="qty-control"><button class="qty-btn add" onclick="openModal('Sweet Potato Fries',3.49,'fries')">+</button><div class="qty-num" id="qty-display-Sweet Potato Fries">0</div><button class="qty-btn" onclick="removeItem('Sweet Potato Fries')">−</button></div></div>
-    <div class="item-card"><div class="item-info"><div class="item-name">Onion Rings</div><div class="item-desc">Thick-cut onion rings in a crispy seasoned batter</div><div class="item-price">2.99 <span>JD</span></div></div><div class="qty-control"><button class="qty-btn add" onclick="simpleAdd('Onion Rings',2.99)">+</button><div class="qty-num" id="qty-display-Onion Rings">0</div><button class="qty-btn" onclick="removeItem('Onion Rings')">−</button></div></div>
-    <div class="item-card"><div class="item-info"><div class="item-name">Chicken Wings 🍗</div><div class="item-desc">6 crispy wings — choose your sauce and spice level</div><div class="item-price">5.49 <span>JD</span></div></div><div class="qty-control"><button class="qty-btn add" onclick="openModal('Chicken Wings',5.49,'wings')">+</button><div class="qty-num" id="qty-display-Chicken Wings">0</div><button class="qty-btn" onclick="removeItem('Chicken Wings')">−</button></div></div>
-    <div class="item-card"><div class="item-info"><div class="item-name">Garlic Bread</div><div class="item-desc">Toasted baguette with garlic butter, parsley, and melted mozzarella</div><div class="item-price">2.49 <span>JD</span></div></div><div class="qty-control"><button class="qty-btn add" onclick="simpleAdd('Garlic Bread',2.49)">+</button><div class="qty-num" id="qty-display-Garlic Bread">0</div><button class="qty-btn" onclick="removeItem('Garlic Bread')">−</button></div></div>
-    <div class="item-card"><div class="item-info"><div class="item-name">Coleslaw</div><div class="item-desc">Fresh creamy coleslaw with shredded cabbage, carrots, and house dressing</div><div class="item-price">1.49 <span>JD</span></div></div><div class="qty-control"><button class="qty-btn add" onclick="simpleAdd('Coleslaw',1.49)">+</button><div class="qty-num" id="qty-display-Coleslaw">0</div><button class="qty-btn" onclick="removeItem('Coleslaw')">−</button></div></div>
-  </div>
-</div>
-
-<!-- SAUCES -->
-<div class="section" id="sauces">
-  <div class="section-title">🥫 Sauces</div>
-  <div class="items-grid">
-    <div class="item-card"><div class="item-info"><div class="item-name">Special House Sauce</div><div class="item-desc">Miniresto's secret blend — creamy, tangy, slightly smoky</div><div class="item-price">0.50 <span>JD</span></div></div><div class="qty-control"><button class="qty-btn add" onclick="simpleAdd('Special House Sauce',0.50)">+</button><div class="qty-num" id="qty-display-Special House Sauce">0</div><button class="qty-btn" onclick="removeItem('Special House Sauce')">−</button></div></div>
-    <div class="item-card"><div class="item-info"><div class="item-name">BBQ Sauce</div><div class="item-desc">Rich smoky BBQ dipping sauce</div><div class="item-price">0.50 <span>JD</span></div></div><div class="qty-control"><button class="qty-btn add" onclick="simpleAdd('BBQ Sauce',0.50)">+</button><div class="qty-num" id="qty-display-BBQ Sauce">0</div><button class="qty-btn" onclick="removeItem('BBQ Sauce')">−</button></div></div>
-    <div class="item-card"><div class="item-info"><div class="item-name">Garlic Aioli</div><div class="item-desc">Creamy roasted garlic aioli, perfect for fries and wings</div><div class="item-price">0.50 <span>JD</span></div></div><div class="qty-control"><button class="qty-btn add" onclick="simpleAdd('Garlic Aioli',0.50)">+</button><div class="qty-num" id="qty-display-Garlic Aioli">0</div><button class="qty-btn" onclick="removeItem('Garlic Aioli')">−</button></div></div>
-    <div class="item-card"><div class="item-info"><div class="item-name">Buffalo Sauce 🌶️</div><div class="item-desc">Spicy tangy buffalo hot sauce</div><div class="item-price">0.50 <span>JD</span></div></div><div class="qty-control"><button class="qty-btn add" onclick="simpleAdd('Buffalo Sauce',0.50)">+</button><div class="qty-num" id="qty-display-Buffalo Sauce">0</div><button class="qty-btn" onclick="removeItem('Buffalo Sauce')">−</button></div></div>
-    <div class="item-card"><div class="item-info"><div class="item-name">Honey Mustard</div><div class="item-desc">Sweet honey blended with tangy Dijon mustard</div><div class="item-price">0.50 <span>JD</span></div></div><div class="qty-control"><button class="qty-btn add" onclick="simpleAdd('Honey Mustard',0.50)">+</button><div class="qty-num" id="qty-display-Honey Mustard">0</div><button class="qty-btn" onclick="removeItem('Honey Mustard')">−</button></div></div>
-    <div class="item-card"><div class="item-info"><div class="item-name">Truffle Mayo ✨</div><div class="item-desc">Luxurious truffle-infused mayonnaise</div><div class="item-price">0.75 <span>JD</span></div></div><div class="qty-control"><button class="qty-btn add" onclick="simpleAdd('Truffle Mayo',0.75)">+</button><div class="qty-num" id="qty-display-Truffle Mayo">0</div><button class="qty-btn" onclick="removeItem('Truffle Mayo')">−</button></div></div>
+    <div class="item-card" id="card-bolognese">
+      <div class="item-info">
+        <div class="item-name">Spaghetti Bolognese</div>
+        <div class="item-desc">Slow-cooked beef ragù, spaghetti, parmesan, fresh basil</div>
+        <div class="item-price">7.49 <span>JD</span></div>
+      </div>
+      <div class="qty-control">
+        <button class="qty-btn" onclick="changeQty('Spaghetti Bolognese', 7.49, 1)">+</button>
+        <div class="qty-num" id="qty-Spaghetti Bolognese">0</div>
+        <button class="qty-btn" onclick="changeQty('Spaghetti Bolognese', 7.49, -1)">−</button>
+      </div>
+    </div>
+    <div class="item-card" id="card-arrabbiata">
+      <div class="item-info">
+        <div class="item-name">Penne Arrabbiata</div>
+        <div class="item-desc">Spicy tomato sauce, garlic, penne, fresh parsley</div>
+        <div class="item-price">6.99 <span>JD</span></div>
+      </div>
+      <div class="qty-control">
+        <button class="qty-btn" onclick="changeQty('Penne Arrabbiata', 6.99, 1)">+</button>
+        <div class="qty-num" id="qty-Penne Arrabbiata">0</div>
+        <button class="qty-btn" onclick="changeQty('Penne Arrabbiata', 6.99, -1)">−</button>
+      </div>
+    </div>
+    <div class="item-card" id="card-mushroom">
+      <div class="item-info">
+        <div class="item-name">Creamy Mushroom</div>
+        <div class="item-desc">Sautéed mushrooms, cream sauce, garlic, parmesan, fettuccine</div>
+        <div class="item-price">7.99 <span>JD</span></div>
+      </div>
+      <div class="qty-control">
+        <button class="qty-btn" onclick="changeQty('Creamy Mushroom', 7.99, 1)">+</button>
+        <div class="qty-num" id="qty-Creamy Mushroom">0</div>
+        <button class="qty-btn" onclick="changeQty('Creamy Mushroom', 7.99, -1)">−</button>
+      </div>
+    </div>
   </div>
 </div>
 
@@ -300,19 +571,49 @@
 <div class="section" id="drinks">
   <div class="section-title">🥤 Drinks</div>
   <div class="items-grid">
-    <div class="item-card"><div class="item-info"><div class="item-name">Soft Drinks</div><div class="item-desc">Pepsi, 7UP, or Miranda — your choice</div><div class="item-price">1.50 <span>JD</span></div></div><div class="qty-control"><button class="qty-btn add" onclick="openModal('Soft Drink',1.50,'soft-drink')">+</button><div class="qty-num" id="qty-display-Soft Drink">0</div><button class="qty-btn" onclick="removeItem('Soft Drink')">−</button></div></div>
-    <div class="item-card"><div class="item-info"><div class="item-name">Fresh Juice</div><div class="item-desc">Orange, watermelon, or lemon mint — freshly squeezed</div><div class="item-price">2.99 <span>JD</span></div></div><div class="qty-control"><button class="qty-btn add" onclick="openModal('Fresh Juice',2.99,'juice')">+</button><div class="qty-num" id="qty-display-Fresh Juice">0</div><button class="qty-btn" onclick="removeItem('Fresh Juice')">−</button></div></div>
-    <div class="item-card"><div class="item-info"><div class="item-name">Water</div><div class="item-desc">Still water bottle 500ml</div><div class="item-price">0.75 <span>JD</span></div></div><div class="qty-control"><button class="qty-btn add" onclick="simpleAdd('Water',0.75)">+</button><div class="qty-num" id="qty-display-Water">0</div><button class="qty-btn" onclick="removeItem('Water')">−</button></div></div>
-    <div class="item-card"><div class="item-info"><div class="item-name">Milkshake 🥛</div><div class="item-desc">Thick creamy shake — chocolate, vanilla, or strawberry</div><div class="item-price">3.49 <span>JD</span></div></div><div class="qty-control"><button class="qty-btn add" onclick="openModal('Milkshake',3.49,'milkshake')">+</button><div class="qty-num" id="qty-display-Milkshake">0</div><button class="qty-btn" onclick="removeItem('Milkshake')">−</button></div></div>
-    <div class="item-card"><div class="item-info"><div class="item-name">Iced Coffee ☕</div><div class="item-desc">Cold brew over ice — sweetened or unsweetened</div><div class="item-price">2.49 <span>JD</span></div></div><div class="qty-control"><button class="qty-btn add" onclick="openModal('Iced Coffee',2.49,'iced-coffee')">+</button><div class="qty-num" id="qty-display-Iced Coffee">0</div><button class="qty-btn" onclick="removeItem('Iced Coffee')">−</button></div></div>
-    <div class="item-card"><div class="item-info"><div class="item-name">Lemonade 🍋</div><div class="item-desc">Fresh squeezed lemonade with mint — still or sparkling</div><div class="item-price">2.25 <span>JD</span></div></div><div class="qty-control"><button class="qty-btn add" onclick="openModal('Lemonade',2.25,'lemonade')">+</button><div class="qty-num" id="qty-display-Lemonade">0</div><button class="qty-btn" onclick="removeItem('Lemonade')">−</button></div></div>
-    <div class="item-card"><div class="item-info"><div class="item-name">Hot Tea 🍵</div><div class="item-desc">English breakfast, green, or mint tea</div><div class="item-price">1.50 <span>JD</span></div></div><div class="qty-control"><button class="qty-btn add" onclick="openModal('Hot Tea',1.50,'tea')">+</button><div class="qty-num" id="qty-display-Hot Tea">0</div><button class="qty-btn" onclick="removeItem('Hot Tea')">−</button></div></div>
+    <div class="item-card" id="card-soft-drinks">
+      <div class="item-info">
+        <div class="item-name">Soft Drinks</div>
+        <div class="item-desc">Pepsi, 7UP, or Miranda — your choice</div>
+        <div class="item-price">1.50 <span>JD</span></div>
+      </div>
+      <div class="qty-control">
+        <button class="qty-btn" onclick="changeQty('Soft Drinks', 1.50, 1)">+</button>
+        <div class="qty-num" id="qty-Soft Drinks">0</div>
+        <button class="qty-btn" onclick="changeQty('Soft Drinks', 1.50, -1)">−</button>
+      </div>
+    </div>
+    <div class="item-card" id="card-fresh-juice">
+      <div class="item-info">
+        <div class="item-name">Fresh Juice</div>
+        <div class="item-desc">Orange, watermelon, or lemon mint — freshly squeezed</div>
+        <div class="item-price">2.99 <span>JD</span></div>
+      </div>
+      <div class="qty-control">
+        <button class="qty-btn" onclick="changeQty('Fresh Juice', 2.99, 1)">+</button>
+        <div class="qty-num" id="qty-Fresh Juice">0</div>
+        <button class="qty-btn" onclick="changeQty('Fresh Juice', 2.99, -1)">−</button>
+      </div>
+    </div>
+    <div class="item-card" id="card-water">
+      <div class="item-info">
+        <div class="item-name">Water</div>
+        <div class="item-desc">Still water bottle 500ml</div>
+        <div class="item-price">0.75 <span>JD</span></div>
+      </div>
+      <div class="qty-control">
+        <button class="qty-btn" onclick="changeQty('Water', 0.75, 1)">+</button>
+        <div class="qty-num" id="qty-Water">0</div>
+        <button class="qty-btn" onclick="changeQty('Water', 0.75, -1)">−</button>
+      </div>
+    </div>
   </div>
 </div>
 
 <div class="bottom-spacer"></div>
 <footer>© 2025 Miniresto · Powered by Mino 🍽️</footer>
 
+<!-- OVERLAY -->
 <div class="overlay" id="overlay" onclick="toggleCart()"></div>
 
 <!-- CART PANEL -->
@@ -321,202 +622,37 @@
     <h2>🛒 Your Order</h2>
     <button class="close-btn" onclick="toggleCart()">✕</button>
   </div>
-  <div id="cartItems"><div class="empty-cart">No items yet. Add something delicious! 🍽️</div></div>
+  <div id="cartItems">
+    <div class="empty-cart">No items yet. Add something delicious! 🍽️</div>
+  </div>
   <div id="cartFooter" style="display:none">
     <div class="cart-total">
       <div class="cart-total-label">Total</div>
       <div class="cart-total-amount" id="cartTotal">0.00 JD</div>
     </div>
-    <button class="order-btn" onclick="sendToTelegram()">✈️ Order via Telegram</button>
-  </div>
-</div>
-
-<!-- CUSTOMIZATION MODAL -->
-<div class="modal-overlay" id="modalOverlay">
-  <div class="modal">
-    <div class="modal-title" id="modalTitle"></div>
-    <div class="modal-subtitle" id="modalSubtitle"></div>
-    <div id="modalOptions"></div>
-    <div class="modal-actions">
-      <button class="modal-cancel" onclick="closeModal()">Cancel</button>
-      <button class="modal-confirm" onclick="confirmModal()">Add to Order ✓</button>
-    </div>
+    <button class="order-btn" onclick="sendToTelegram()">
+      ✈️ Order via Telegram
+    </button>
   </div>
 </div>
 
 <script>
+  // ⚠️ REPLACE THIS with your actual bot username
   const BOT_USERNAME = 'n8n_soc_alert_bot';
 
-  const modalConfigs = {
-    'burger': {
-      subtitle: 'Customize your burger',
-      sections: [
-        { label: 'Doneness', key: 'doneness', options: ['Regular', 'Well Done'], required: true },
-        { label: 'Spice Level', key: 'spice', options: ['Mild', 'Medium', 'Hot 🌶️'], required: true },
-        { label: 'Extras (optional)', key: 'extras', options: ['Extra Cheese', 'Extra Sauce', 'No Onions', 'No Pickles', 'No Sauce'], required: false, multi: true },
-      ]
-    },
-    'pizza': {
-      subtitle: 'Customize your pizza',
-      sections: [
-        { label: 'Crust', key: 'crust', options: ['Thin', 'Regular', 'Thick'], required: true },
-        { label: 'Extras (optional)', key: 'extras', options: ['Extra Cheese', 'Extra Sauce', 'No Olives', 'No Onions'], required: false, multi: true },
-      ]
-    },
-    'pasta': {
-      subtitle: 'Customize your pasta',
-      sections: [
-        { label: 'Spice Level', key: 'spice', options: ['Mild', 'Medium', 'Spicy 🌶️'], required: true },
-        { label: 'Extras (optional)', key: 'extras', options: ['Extra Parmesan', 'Extra Sauce', 'No Garlic'], required: false, multi: true },
-      ]
-    },
-    'fries': {
-      subtitle: 'Customize your fries',
-      sections: [
-        { label: 'Seasoning', key: 'seasoning', options: ['Lightly Salted', 'Regular', 'Extra Seasoning'], required: true },
-        { label: 'Extras (optional)', key: 'extras', options: ['Extra Crispy', 'No Salt'], required: false, multi: true },
-      ]
-    },
-    'wings': {
-      subtitle: 'Customize your wings',
-      sections: [
-        { label: 'Sauce', key: 'sauce', options: ['BBQ', 'Buffalo 🌶️', 'Honey Mustard', 'Plain'], required: true },
-        { label: 'Spice Level', key: 'spice', options: ['Mild', 'Medium', 'Hot 🌶️'], required: true },
-      ]
-    },
-    'soft-drink': {
-      subtitle: 'Choose your drink',
-      sections: [
-        { label: 'Flavor', key: 'flavor', options: ['Pepsi', '7UP', 'Miranda'], required: true },
-        { label: 'Temperature', key: 'temp', options: ['Cold 🧊', 'Room Temp'], required: true },
-      ]
-    },
-    'juice': {
-      subtitle: 'Choose your juice',
-      sections: [
-        { label: 'Flavor', key: 'flavor', options: ['Orange 🍊', 'Watermelon 🍉', 'Lemon Mint 🍋'], required: true },
-        { label: 'Ice', key: 'ice', options: ['With Ice 🧊', 'No Ice'], required: true },
-      ]
-    },
-    'milkshake': {
-      subtitle: 'Choose your milkshake',
-      sections: [
-        { label: 'Flavor', key: 'flavor', options: ['Chocolate 🍫', 'Vanilla', 'Strawberry 🍓'], required: true },
-      ]
-    },
-    'iced-coffee': {
-      subtitle: 'Customize your iced coffee',
-      sections: [
-        { label: 'Sweetness', key: 'sweet', options: ['Unsweetened', 'Light Sugar', 'Sweet'], required: true },
-        { label: 'Milk', key: 'milk', options: ['Full Milk', 'Skimmed Milk', 'Oat Milk', 'No Milk'], required: true },
-      ]
-    },
-    'lemonade': {
-      subtitle: 'Customize your lemonade',
-      sections: [
-        { label: 'Type', key: 'type', options: ['Still', 'Sparkling'], required: true },
-        { label: 'Sweetness', key: 'sweet', options: ['Light', 'Regular', 'Extra Sweet'], required: true },
-      ]
-    },
-    'tea': {
-      subtitle: 'Choose your tea',
-      sections: [
-        { label: 'Type', key: 'type', options: ['English Breakfast', 'Green Tea 🍵', 'Mint Tea'], required: true },
-        { label: 'Sweetness', key: 'sweet', options: ['No Sugar', 'Light Sugar', 'Regular Sugar'], required: true },
-      ]
-    },
-  };
-
   let cart = {};
-  let currentModal = null;
-  let modalSelections = {};
 
-  function openModal(name, price, type) {
-    currentModal = { name, price, type };
-    modalSelections = {};
-    const config = modalConfigs[type];
-    document.getElementById('modalTitle').textContent = name;
-    document.getElementById('modalSubtitle').textContent = config.subtitle;
-    let html = '';
-    config.sections.forEach(section => {
-      html += `<div class="modal-section-label">${section.label}</div><div class="options-grid">`;
-      section.options.forEach(opt => {
-        html += `<button class="option-btn" data-key="${section.key}" onclick="selectOption(this,'${section.key}','${opt}',${section.multi||false})">${opt}</button>`;
-      });
-      html += `</div>`;
-    });
-    document.getElementById('modalOptions').innerHTML = html;
-    document.getElementById('modalOverlay').classList.add('show');
-  }
-
-  function selectOption(btn, key, value, multi) {
-    if (multi) {
-      btn.classList.toggle('selected');
-      if (!modalSelections[key]) modalSelections[key] = [];
-      const idx = modalSelections[key].indexOf(value);
-      if (idx > -1) modalSelections[key].splice(idx, 1);
-      else modalSelections[key].push(value);
-    } else {
-      document.querySelectorAll(`.option-btn[data-key="${key}"]`).forEach(b => b.classList.remove('selected'));
-      btn.classList.add('selected');
-      modalSelections[key] = value;
-    }
-  }
-
-  function closeModal() {
-    document.getElementById('modalOverlay').classList.remove('show');
-    currentModal = null;
-    modalSelections = {};
-  }
-
-  function confirmModal() {
-    if (!currentModal) return;
-    const config = modalConfigs[currentModal.type];
-    for (const section of config.sections) {
-      if (section.required && !modalSelections[section.key]) {
-        alert(`Please select: ${section.label.replace(' (optional)', '')}`);
-        return;
-      }
-    }
-    let optionParts = [];
-    config.sections.forEach(section => {
-      const val = modalSelections[section.key];
-      if (val) {
-        if (Array.isArray(val) && val.length > 0) optionParts.push(val.join(', '));
-        else if (!Array.isArray(val)) optionParts.push(val);
-      }
-    });
-    const displayName = optionParts.length > 0 ? `${currentModal.name} (${optionParts.join(' | ')})` : currentModal.name;
-    addToCart(displayName, currentModal.price);
-    closeModal();
-  }
-
-  function simpleAdd(name, price) { addToCart(name, price); }
-
-  function removeItem(baseName) {
-    const keys = Object.keys(cart).filter(k => k === baseName || k.startsWith(baseName + ' ('));
-    if (keys.length > 0) {
-      const lastKey = keys[keys.length - 1];
-      cart[lastKey].qty--;
-      if (cart[lastKey].qty <= 0) delete cart[lastKey];
-    }
-    updateDisplayQty(baseName);
+  function changeQty(name, price, delta) {
+    if (!cart[name]) cart[name] = { price, qty: 0 };
+    cart[name].qty = Math.max(0, cart[name].qty + delta);
+    if (cart[name].qty === 0) delete cart[name];
+    updateUI(name);
     updateCart();
   }
 
-  function addToCart(displayName, price) {
-    if (!cart[displayName]) cart[displayName] = { price, qty: 0 };
-    cart[displayName].qty++;
-    updateDisplayQty(displayName.split(' (')[0]);
-    updateCart();
-  }
-
-  function updateDisplayQty(baseName) {
-    const total = Object.entries(cart)
-      .filter(([k]) => k === baseName || k.startsWith(baseName + ' ('))
-      .reduce((sum, [, v]) => sum + v.qty, 0);
-    const el = document.getElementById('qty-display-' + baseName);
-    if (el) el.textContent = total;
+  function updateUI(name) {
+    const el = document.getElementById('qty-' + name);
+    if (el) el.textContent = cart[name] ? cart[name].qty : 0;
   }
 
   function updateCart() {
@@ -526,60 +662,47 @@
 
     const itemsEl = document.getElementById('cartItems');
     const footerEl = document.getElementById('cartFooter');
-    
+
     if (count === 0) {
       itemsEl.innerHTML = '<div class="empty-cart">No items yet. Add something delicious! 🍽️</div>';
       footerEl.style.display = 'none';
     } else {
       itemsEl.innerHTML = Object.entries(cart).map(([name, { price, qty }]) => `
         <div class="cart-item">
-          <div style="flex:1;margin-right:12px">
+          <div>
             <div class="cart-item-name">${name}</div>
             <div class="cart-item-qty">x${qty} × ${price.toFixed(2)} JD</div>
           </div>
           <div class="cart-item-price">${(price * qty).toFixed(2)} JD</div>
-        </div>`).join('');
+        </div>
+      `).join('');
       document.getElementById('cartTotal').textContent = total.toFixed(2) + ' JD';
       footerEl.style.display = 'block';
     }
   }
 
   function toggleCart() {
-    document.getElementById('cartPanel').classList.toggle('open');
-    document.getElementById('overlay').classList.toggle('show');
+    const panel = document.getElementById('cartPanel');
+    const overlay = document.getElementById('overlay');
+    panel.classList.toggle('open');
+    overlay.classList.toggle('show');
   }
 
-  async function sendToTelegram() {
+  function sendToTelegram() {
     const count = Object.values(cart).reduce((s, i) => s + i.qty, 0);
     if (count === 0) return;
 
-    const urlParams = new URLSearchParams(window.location.search);
-    const chat_id = urlParams.get('chat_id');
+    // Build order string: "order_ClassicSmash-x2_Pepperoni-x1"
+    const orderParts = Object.entries(cart)
+      .map(([name, { qty }]) => `${name.replace(/\s+/g, '-')}-x${qty}`)
+      .join('_');
 
-    const items = Object.entries(cart).map(([name, { price, qty }]) => ({
-      name,
-      price,
-      qty,
-      subtotal: parseFloat((price * qty).toFixed(2))
-    }));
-
-    const total = parseFloat(
-      Object.values(cart).reduce((s, i) => s + i.price * i.qty, 0).toFixed(2)
-    );
-
-    const payload = { items, total, chat_id };
-
-    await fetch('https://incisive-ambiguously-matilda.ngrok-free.dev/webhook/miniresto-order', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(payload)
-    });
-
-    alert('Order sent! Check your Telegram for confirmation. 🎉');
-    toggleCart();
+    const startParam = 'order_' + orderParts;
+    const url = `https://t.me/${BOT_USERNAME}?start=${encodeURIComponent(startParam)}`;
+    window.open(url, '_blank');
   }
 
-  function scrollToSection(id, tabEl) {
+  function scrollTo(id, tabEl) {
     document.getElementById(id).scrollIntoView({ behavior: 'smooth', block: 'start' });
     document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
     tabEl.classList.add('active');
