@@ -579,11 +579,6 @@
     toggleCart();
   }
 
-    const startParam = 'order_' + orderParts;
-    const url = 'https://t.me/' + BOT_USERNAME + '?start=' + encodeURIComponent(startParam);
-    window.open(url, '_blank');
-  }
-
   function scrollToSection(id, tabEl) {
     document.getElementById(id).scrollIntoView({ behavior: 'smooth', block: 'start' });
     document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
