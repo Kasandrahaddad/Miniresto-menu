@@ -523,8 +523,10 @@
     const total = Object.values(cart).reduce((s, i) => s + i.price * i.qty, 0);
     const count = Object.values(cart).reduce((s, i) => s + i.qty, 0);
     document.getElementById('cartCount').textContent = count;
+
     const itemsEl = document.getElementById('cartItems');
     const footerEl = document.getElementById('cartFooter');
+    
     if (count === 0) {
       itemsEl.innerHTML = '<div class="empty-cart">No items yet. Add something delicious! 🍽️</div>';
       footerEl.style.display = 'none';
@@ -561,7 +563,7 @@
     window.open(url, '_blank');
   }
 
-  function scrollTo(id, tabEl) {
+  function scrollToSection(id, tabEl) {
     document.getElementById(id).scrollIntoView({ behavior: 'smooth', block: 'start' });
     document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
     tabEl.classList.add('active');
