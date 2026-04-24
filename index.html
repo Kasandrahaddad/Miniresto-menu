@@ -4,7 +4,7 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>Miniresto — Menu</title>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
 <style>
   :root {
     --bg: #0f0e0c;
@@ -13,12 +13,10 @@
     --border: #2e2b25;
     --gold: #c9a84c;
     --gold-light: #e8c97a;
-    --gold-dim: rgba(201,168,76,0.15);
     --red: #c0392b;
     --text: #f0ead8;
     --muted: #8a8070;
     --white: #ffffff;
-    --green: #4caf79;
   }
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -31,11 +29,11 @@
     overflow-x: hidden;
   }
 
-  /* ===== HEADER ===== */
+  /* HEADER */
   header {
     background: var(--surface);
     border-bottom: 1px solid var(--border);
-    padding: 16px 24px;
+    padding: 20px 24px;
     position: sticky;
     top: 0;
     z-index: 100;
@@ -46,28 +44,33 @@
 
   .logo {
     font-family: 'Playfair Display', serif;
-    font-size: 24px;
+    font-size: 26px;
     font-weight: 900;
     color: var(--gold);
     letter-spacing: 1px;
   }
-  .logo span { color: var(--text); font-weight: 700; }
+
+  .logo span {
+    color: var(--text);
+    font-weight: 700;
+  }
 
   .cart-btn {
     background: var(--gold);
     color: #0f0e0c;
     border: none;
-    padding: 10px 18px;
+    padding: 10px 20px;
     border-radius: 50px;
     font-family: 'DM Sans', sans-serif;
-    font-weight: 600;
-    font-size: 13px;
+    font-weight: 500;
+    font-size: 14px;
     cursor: pointer;
     display: flex;
     align-items: center;
     gap: 8px;
     transition: background 0.2s;
   }
+
   .cart-btn:hover { background: var(--gold-light); }
 
   .cart-count {
@@ -83,36 +86,45 @@
     font-weight: 700;
   }
 
-  /* ===== HERO ===== */
+  /* HERO */
   .hero {
-    padding: 40px 24px 28px;
+    padding: 48px 24px 32px;
     text-align: center;
     background: radial-gradient(ellipse at top, #2a2418 0%, var(--bg) 70%);
   }
+
   .hero h1 {
     font-family: 'Playfair Display', serif;
-    font-size: clamp(32px, 7vw, 56px);
+    font-size: clamp(36px, 8vw, 64px);
     font-weight: 900;
     line-height: 1.1;
-    margin-bottom: 10px;
+    margin-bottom: 12px;
   }
-  .hero h1 span { color: var(--gold); }
-  .hero p { color: var(--muted); font-size: 14px; font-weight: 300; }
 
-  /* ===== TABS ===== */
+  .hero h1 span { color: var(--gold); }
+
+  .hero p {
+    color: var(--muted);
+    font-size: 15px;
+    font-weight: 300;
+  }
+
+  /* CATEGORY TABS */
   .tabs {
     display: flex;
     gap: 8px;
-    padding: 20px 24px 0;
+    padding: 24px 24px 0;
     overflow-x: auto;
     scrollbar-width: none;
   }
+
   .tabs::-webkit-scrollbar { display: none; }
+
   .tab {
     background: var(--card);
     border: 1px solid var(--border);
     color: var(--muted);
-    padding: 9px 18px;
+    padding: 10px 20px;
     border-radius: 50px;
     font-size: 13px;
     font-weight: 500;
@@ -121,377 +133,129 @@
     transition: all 0.2s;
     font-family: 'DM Sans', sans-serif;
   }
+
   .tab:hover, .tab.active {
     background: var(--gold);
     border-color: var(--gold);
     color: #0f0e0c;
   }
 
-  /* ===== SECTIONS ===== */
-  .section { padding: 28px 24px 0; }
-  .section-title {
-    font-family: 'Playfair Display', serif;
-    font-size: 20px;
-    font-weight: 700;
-    color: var(--gold);
-    margin-bottom: 16px;
-    display: flex;
-    align-items: center;
-    gap: 8px;
+  /* SECTIONS */
+  .section {
+    padding: 32px 24px 0;
   }
 
-  /* ===== ITEM GRID ===== */
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--gold);
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  /* ITEMS GRID */
   .items-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-    gap: 14px;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 16px;
+    margin-bottom: 8px;
   }
 
   .item-card {
     background: var(--card);
     border: 1px solid var(--border);
-    border-radius: 14px;
-    padding: 18px;
-    cursor: pointer;
-    transition: border-color 0.2s, transform 0.2s, background 0.2s;
-    position: relative;
-  }
-  .item-card:hover { border-color: var(--gold); transform: translateY(-2px); }
-  .item-card.in-cart { border-color: var(--gold); background: #1e1c14; }
-
-  .item-badge {
-    position: absolute;
-    top: 12px;
-    right: 12px;
-    background: var(--gold);
-    color: #0f0e0c;
-    font-size: 10px;
-    font-weight: 700;
-    padding: 3px 8px;
-    border-radius: 20px;
-    letter-spacing: 0.5px;
-  }
-
-  .item-name { font-weight: 600; font-size: 15px; margin-bottom: 5px; color: var(--text); }
-  .item-desc { font-size: 12px; color: var(--muted); line-height: 1.5; margin-bottom: 12px; font-weight: 300; }
-
-  .item-footer {
+    border-radius: 16px;
+    padding: 20px;
     display: flex;
-    align-items: center;
     justify-content: space-between;
+    align-items: flex-start;
+    gap: 16px;
+    transition: border-color 0.2s, transform 0.2s;
+  }
+
+  .item-card:hover {
+    border-color: var(--gold);
+    transform: translateY(-2px);
+  }
+
+  .item-card.in-cart {
+    border-color: var(--gold);
+    background: #221f16;
+  }
+
+  .item-info { flex: 1; }
+
+  .item-name {
+    font-weight: 500;
+    font-size: 16px;
+    margin-bottom: 6px;
+    color: var(--text);
+  }
+
+  .item-desc {
+    font-size: 12px;
+    color: var(--muted);
+    line-height: 1.5;
+    margin-bottom: 10px;
+    font-weight: 300;
   }
 
   .item-price {
     font-family: 'Playfair Display', serif;
-    font-size: 17px;
+    font-size: 18px;
     font-weight: 700;
     color: var(--gold);
   }
-  .item-price span { font-family: 'DM Sans', sans-serif; font-size: 11px; font-weight: 400; color: var(--muted); }
 
-  .item-from { font-size: 11px; color: var(--muted); }
+  .item-price span {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 12px;
+    font-weight: 400;
+    color: var(--muted);
+  }
 
-  .add-btn {
-    background: var(--gold);
-    color: #0f0e0c;
-    border: none;
+  /* QTY CONTROL */
+  .qty-control {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    min-width: 36px;
+  }
+
+  .qty-btn {
     width: 32px;
     height: 32px;
     border-radius: 50%;
-    font-size: 20px;
+    border: 1px solid var(--border);
+    background: var(--surface);
+    color: var(--text);
+    font-size: 18px;
     cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: background 0.15s;
-    font-weight: 300;
+    transition: all 0.15s;
+    font-family: 'DM Sans', sans-serif;
     line-height: 1;
   }
-  .add-btn:hover { background: var(--gold-light); }
 
-  .cart-indicator {
-    display: none;
-    align-items: center;
-    gap: 8px;
-    margin-top: 10px;
-    padding-top: 10px;
-    border-top: 1px solid var(--border);
-  }
-  .cart-indicator.show { display: flex; }
-  .cart-indicator-text { font-size: 12px; color: var(--gold); font-weight: 500; flex: 1; }
-  .cart-indicator-count {
-    background: var(--gold);
-    color: #0f0e0c;
-    border-radius: 50%;
-    width: 22px;
-    height: 22px;
-    font-size: 12px;
+  .qty-btn:hover { background: var(--gold); color: #0f0e0c; border-color: var(--gold); }
+  .qty-btn.add { background: var(--gold); color: #0f0e0c; border-color: var(--gold); }
+  .qty-btn.add:hover { background: var(--gold-light); }
+
+  .qty-num {
     font-weight: 700;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-  /* ===== MODAL ===== */
-  .modal-overlay {
-    position: fixed;
-    inset: 0;
-    background: rgba(0,0,0,0.75);
-    z-index: 300;
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity 0.25s;
-    display: flex;
-    align-items: flex-end;
-    justify-content: center;
-  }
-  .modal-overlay.show { opacity: 1; pointer-events: all; }
-
-  .modal {
-    background: var(--surface);
-    border-radius: 24px 24px 0 0;
-    width: 100%;
-    max-width: 600px;
-    max-height: 90vh;
-    overflow-y: auto;
-    transform: translateY(100%);
-    transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
-    padding: 0 0 40px;
-  }
-  .modal-overlay.show .modal { transform: translateY(0); }
-
-  .modal-handle {
-    width: 40px;
-    height: 4px;
-    background: var(--border);
-    border-radius: 2px;
-    margin: 12px auto 0;
-  }
-
-  .modal-header {
-    padding: 20px 24px 16px;
-    border-bottom: 1px solid var(--border);
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    gap: 12px;
-  }
-
-  .modal-title { font-family: 'Playfair Display', serif; font-size: 20px; font-weight: 700; color: var(--text); }
-  .modal-desc { font-size: 12px; color: var(--muted); margin-top: 4px; line-height: 1.5; }
-  .modal-base-price { font-family: 'Playfair Display', serif; font-size: 18px; color: var(--gold); font-weight: 700; white-space: nowrap; }
-
-  .modal-close {
-    background: var(--card);
-    border: 1px solid var(--border);
-    color: var(--text);
-    width: 32px;
-    height: 32px;
-    border-radius: 50%;
-    cursor: pointer;
-    font-size: 16px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-shrink: 0;
-  }
-
-  /* ===== CUSTOMIZATION SECTIONS ===== */
-  .custom-section { padding: 18px 24px 0; }
-
-  .custom-section-title {
-    font-size: 13px;
-    font-weight: 600;
-    color: var(--muted);
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    margin-bottom: 12px;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-  }
-
-  .custom-section-title .required {
-    background: var(--red);
-    color: white;
-    font-size: 9px;
-    padding: 2px 6px;
-    border-radius: 10px;
-    letter-spacing: 0;
-    text-transform: uppercase;
-  }
-
-  .custom-section-title .optional {
-    background: var(--card);
-    border: 1px solid var(--border);
-    color: var(--muted);
-    font-size: 9px;
-    padding: 2px 6px;
-    border-radius: 10px;
-    letter-spacing: 0;
-    text-transform: uppercase;
-  }
-
-  /* Radio / Single Select */
-  .option-list { display: flex; flex-direction: column; gap: 8px; }
-
-  .option-item {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 12px 14px;
-    background: var(--card);
-    border: 1.5px solid var(--border);
-    border-radius: 10px;
-    cursor: pointer;
-    transition: all 0.15s;
-  }
-  .option-item:hover { border-color: var(--gold); }
-  .option-item.selected { border-color: var(--gold); background: var(--gold-dim); }
-
-  .option-left { display: flex; align-items: center; gap: 10px; }
-  .option-radio {
-    width: 18px;
-    height: 18px;
-    border-radius: 50%;
-    border: 2px solid var(--border);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: all 0.15s;
-    flex-shrink: 0;
-  }
-  .option-item.selected .option-radio { border-color: var(--gold); background: var(--gold); }
-  .option-item.selected .option-radio::after {
-    content: '';
-    width: 6px;
-    height: 6px;
-    border-radius: 50%;
-    background: #0f0e0c;
-  }
-
-  .option-label { font-size: 14px; font-weight: 500; color: var(--text); }
-  .option-sublabel { font-size: 11px; color: var(--muted); margin-top: 1px; }
-  .option-price { font-size: 13px; color: var(--gold); font-weight: 600; }
-  .option-price.free { color: var(--green); }
-
-  /* Grid Options (for flavors/sizes) */
-  .option-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
-    gap: 8px;
-  }
-
-  .option-chip {
-    padding: 10px 12px;
-    background: var(--card);
-    border: 1.5px solid var(--border);
-    border-radius: 10px;
-    cursor: pointer;
-    transition: all 0.15s;
-    text-align: center;
-  }
-  .option-chip:hover { border-color: var(--gold); }
-  .option-chip.selected { border-color: var(--gold); background: var(--gold-dim); }
-  .option-chip .chip-icon { font-size: 20px; margin-bottom: 4px; }
-  .option-chip .chip-label { font-size: 13px; font-weight: 500; color: var(--text); }
-  .option-chip .chip-price { font-size: 11px; color: var(--muted); margin-top: 2px; }
-  .option-chip.selected .chip-label { color: var(--gold); }
-
-  /* Toggle Options (checkboxes) */
-  .toggle-list { display: flex; flex-direction: column; gap: 8px; }
-
-  .toggle-item {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 12px 14px;
-    background: var(--card);
-    border: 1.5px solid var(--border);
-    border-radius: 10px;
-    cursor: pointer;
-    transition: all 0.15s;
-  }
-  .toggle-item:hover { border-color: var(--gold); }
-  .toggle-item.selected { border-color: var(--gold); background: var(--gold-dim); }
-
-  .toggle-check {
-    width: 20px;
-    height: 20px;
-    border-radius: 5px;
-    border: 2px solid var(--border);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: all 0.15s;
-    flex-shrink: 0;
-    font-size: 12px;
-  }
-  .toggle-item.selected .toggle-check { border-color: var(--gold); background: var(--gold); color: #0f0e0c; }
-
-  /* Qty Stepper inside modal */
-  .qty-stepper {
-    display: flex;
-    align-items: center;
-    gap: 0;
-    border: 1.5px solid var(--border);
-    border-radius: 10px;
-    overflow: hidden;
-    margin-top: 18px;
-  }
-  .qty-stepper-btn {
-    width: 44px;
-    height: 44px;
-    background: var(--card);
-    border: none;
-    color: var(--text);
-    font-size: 20px;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: background 0.15s;
-    font-family: 'DM Sans', sans-serif;
-  }
-  .qty-stepper-btn:hover { background: var(--border); }
-  .qty-stepper-num {
-    flex: 1;
-    text-align: center;
-    font-weight: 700;
-    font-size: 16px;
+    font-size: 15px;
     color: var(--gold);
-    background: var(--card);
-    border-left: 1px solid var(--border);
-    border-right: 1px solid var(--border);
-    height: 44px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    min-width: 20px;
+    text-align: center;
   }
 
-  /* Add to cart button inside modal */
-  .modal-add-btn {
-    margin: 20px 24px 0;
-    width: calc(100% - 48px);
-    background: var(--gold);
-    color: #0f0e0c;
-    border: none;
-    padding: 16px;
-    border-radius: 14px;
-    font-family: 'Playfair Display', serif;
-    font-size: 17px;
-    font-weight: 700;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
-    transition: background 0.2s;
-  }
-  .modal-add-btn:hover { background: var(--gold-light); }
-  .modal-add-btn:disabled { background: var(--border); color: var(--muted); cursor: not-allowed; }
-
-  /* ===== CART PANEL ===== */
+  /* CART PANEL */
   .cart-panel {
     position: fixed;
     bottom: 0;
@@ -503,19 +267,25 @@
     transform: translateY(100%);
     transition: transform 0.3s ease;
     z-index: 200;
-    max-height: 75vh;
+    max-height: 70vh;
     overflow-y: auto;
     border-radius: 24px 24px 0 0;
   }
+
   .cart-panel.open { transform: translateY(0); }
 
   .cart-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 16px;
+    margin-bottom: 20px;
   }
-  .cart-header h2 { font-family: 'Playfair Display', serif; font-size: 20px; color: var(--gold); }
+
+  .cart-header h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 20px;
+    color: var(--gold);
+  }
 
   .close-btn {
     background: var(--card);
@@ -534,27 +304,34 @@
   .cart-item {
     display: flex;
     justify-content: space-between;
-    align-items: flex-start;
+    align-items: center;
     padding: 12px 0;
     border-bottom: 1px solid var(--border);
-    gap: 12px;
   }
-  .cart-item-info { flex: 1; }
-  .cart-item-name { font-size: 14px; font-weight: 600; margin-bottom: 3px; }
-  .cart-item-mods { font-size: 11px; color: var(--muted); line-height: 1.5; }
-  .cart-item-right { display: flex; flex-direction: column; align-items: flex-end; gap: 8px; }
-  .cart-item-price { font-size: 14px; color: var(--gold); font-weight: 600; }
-  .cart-item-remove { font-size: 11px; color: var(--red); cursor: pointer; border: none; background: none; font-family: 'DM Sans', sans-serif; }
-  .cart-item-remove:hover { text-decoration: underline; }
+
+  .cart-item-name { font-size: 14px; font-weight: 500; }
+  .cart-item-qty { font-size: 13px; color: var(--muted); }
+  .cart-item-price { font-size: 14px; color: var(--gold); font-weight: 500; }
 
   .cart-total {
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 16px 0 0;
+    margin-top: 4px;
   }
-  .cart-total-label { font-family: 'Playfair Display', serif; font-size: 18px; }
-  .cart-total-amount { font-family: 'Playfair Display', serif; font-size: 22px; color: var(--gold); font-weight: 700; }
+
+  .cart-total-label {
+    font-family: 'Playfair Display', serif;
+    font-size: 18px;
+  }
+
+  .cart-total-amount {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    color: var(--gold);
+    font-weight: 700;
+  }
 
   .order-btn {
     width: 100%;
@@ -564,20 +341,28 @@
     padding: 16px;
     border-radius: 14px;
     font-family: 'Playfair Display', serif;
-    font-size: 17px;
+    font-size: 18px;
     font-weight: 700;
     cursor: pointer;
-    margin-top: 14px;
+    margin-top: 16px;
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 10px;
     transition: background 0.2s;
+    letter-spacing: 0.5px;
   }
+
   .order-btn:hover { background: var(--gold-light); }
 
-  .empty-cart { text-align: center; color: var(--muted); padding: 32px 0; font-size: 14px; }
+  .empty-cart {
+    text-align: center;
+    color: var(--muted);
+    padding: 32px 0;
+    font-size: 14px;
+  }
 
+  /* OVERLAY */
   .overlay {
     position: fixed;
     inset: 0;
@@ -587,10 +372,13 @@
     pointer-events: none;
     transition: opacity 0.3s;
   }
+
   .overlay.show { opacity: 1; pointer-events: all; }
 
-  .bottom-spacer { height: 100px; }
+  /* BOTTOM PADDING */
+  .bottom-spacer { height: 120px; }
 
+  /* FOOTER */
   footer {
     text-align: center;
     padding: 16px;
@@ -601,7 +389,6 @@
 
   @media (max-width: 480px) {
     .items-grid { grid-template-columns: 1fr; }
-    .option-grid { grid-template-columns: repeat(3, 1fr); }
   }
 </style>
 </head>
@@ -617,59 +404,210 @@
 
 <div class="hero">
   <h1>Our <span>Menu</span></h1>
-  <p>Tap any item to customize & add to your order</p>
+  <p>Pick your favorites and order in seconds via Telegram</p>
 </div>
 
 <div class="tabs">
-  <div class="tab active" onclick="scrollToSection('burgers', this)">🍔 Burgers</div>
-  <div class="tab" onclick="scrollToSection('pizza', this)">🍕 Pizza</div>
-  <div class="tab" onclick="scrollToSection('pasta', this)">🍝 Pasta</div>
-  <div class="tab" onclick="scrollToSection('fries', this)">🍟 Fries</div>
-  <div class="tab" onclick="scrollToSection('sauces', this)">🥫 Sauces</div>
-  <div class="tab" onclick="scrollToSection('drinks', this)">🥤 Drinks</div>
-  <div class="tab" onclick="scrollToSection('shakes', this)">🥛 Shakes</div>
+  <div class="tab active" onclick="scrollTo('burgers', this)">🍔 Burgers</div>
+  <div class="tab" onclick="scrollTo('pizza', this)">🍕 Pizza</div>
+  <div class="tab" onclick="scrollTo('pasta', this)">🍝 Pasta</div>
+  <div class="tab" onclick="scrollTo('drinks', this)">🥤 Drinks</div>
 </div>
 
 <!-- BURGERS -->
 <div class="section" id="burgers">
   <div class="section-title">🍔 Burgers</div>
-  <div class="items-grid" id="grid-burgers"></div>
+  <div class="items-grid">
+    <div class="item-card" id="card-classic-smash">
+      <div class="item-info">
+        <div class="item-name">Classic Smash</div>
+        <div class="item-desc">Smashed beef patty, American cheese, pickles, onion, special sauce</div>
+        <div class="item-price">5.99 <span>JD</span></div>
+      </div>
+      <div class="qty-control">
+        <button class="qty-btn" onclick="changeQty('Classic Smash', 5.99, 1)">+</button>
+        <div class="qty-num" id="qty-Classic Smash">0</div>
+        <button class="qty-btn" onclick="changeQty('Classic Smash', 5.99, -1)">−</button>
+      </div>
+    </div>
+    <div class="item-card" id="card-bacon-boss">
+      <div class="item-info">
+        <div class="item-name">Bacon Boss</div>
+        <div class="item-desc">Beef patty, crispy streaky bacon, BBQ sauce, aged cheddar, lettuce, tomato</div>
+        <div class="item-price">9.49 <span>JD</span></div>
+      </div>
+      <div class="qty-control">
+        <button class="qty-btn" onclick="changeQty('Bacon Boss', 9.49, 1)">+</button>
+        <div class="qty-num" id="qty-Bacon Boss">0</div>
+        <button class="qty-btn" onclick="changeQty('Bacon Boss', 9.49, -1)">−</button>
+      </div>
+    </div>
+    <div class="item-card" id="card-inferno-burger">
+      <div class="item-info">
+        <div class="item-name">Inferno Burger 🌶️</div>
+        <div class="item-desc">Double patty, ghost pepper sauce, jalapeños, pepper jack cheese, crispy onions</div>
+        <div class="item-price">8.49 <span>JD</span></div>
+      </div>
+      <div class="qty-control">
+        <button class="qty-btn" onclick="changeQty('Inferno Burger', 8.49, 1)">+</button>
+        <div class="qty-num" id="qty-Inferno Burger">0</div>
+        <button class="qty-btn" onclick="changeQty('Inferno Burger', 8.49, -1)">−</button>
+      </div>
+    </div>
+    <div class="item-card" id="card-triple-cheese">
+      <div class="item-info">
+        <div class="item-name">Triple Cheese Stack</div>
+        <div class="item-desc">Triple patty, cheddar, gouda & brie, caramelized onions, truffle aioli</div>
+        <div class="item-price">11.99 <span>JD</span></div>
+      </div>
+      <div class="qty-control">
+        <button class="qty-btn" onclick="changeQty('Triple Cheese Stack', 11.99, 1)">+</button>
+        <div class="qty-num" id="qty-Triple Cheese Stack">0</div>
+        <button class="qty-btn" onclick="changeQty('Triple Cheese Stack', 11.99, -1)">−</button>
+      </div>
+    </div>
+    <div class="item-card" id="card-the-royal">
+      <div class="item-info">
+        <div class="item-name">The Royal 👑</div>
+        <div class="item-desc">Double wagyu patty, foie gras sauce, aged cheddar, gold brioche bun</div>
+        <div class="item-price">16.99 <span>JD</span></div>
+      </div>
+      <div class="qty-control">
+        <button class="qty-btn" onclick="changeQty('The Royal', 16.99, 1)">+</button>
+        <div class="qty-num" id="qty-The Royal">0</div>
+        <button class="qty-btn" onclick="changeQty('The Royal', 16.99, -1)">−</button>
+      </div>
+    </div>
+  </div>
 </div>
 
 <!-- PIZZA -->
 <div class="section" id="pizza">
   <div class="section-title">🍕 Pizza</div>
-  <div class="items-grid" id="grid-pizza"></div>
+  <div class="items-grid">
+    <div class="item-card" id="card-margherita">
+      <div class="item-info">
+        <div class="item-name">Margherita</div>
+        <div class="item-desc">Classic tomato sauce, fresh mozzarella, basil leaves</div>
+        <div class="item-price">6.99 <span>JD</span></div>
+      </div>
+      <div class="qty-control">
+        <button class="qty-btn" onclick="changeQty('Margherita', 6.99, 1)">+</button>
+        <div class="qty-num" id="qty-Margherita">0</div>
+        <button class="qty-btn" onclick="changeQty('Margherita', 6.99, -1)">−</button>
+      </div>
+    </div>
+    <div class="item-card" id="card-pepperoni">
+      <div class="item-info">
+        <div class="item-name">Pepperoni</div>
+        <div class="item-desc">Tomato sauce, mozzarella, premium pepperoni slices</div>
+        <div class="item-price">8.99 <span>JD</span></div>
+      </div>
+      <div class="qty-control">
+        <button class="qty-btn" onclick="changeQty('Pepperoni', 8.99, 1)">+</button>
+        <div class="qty-num" id="qty-Pepperoni">0</div>
+        <button class="qty-btn" onclick="changeQty('Pepperoni', 8.99, -1)">−</button>
+      </div>
+    </div>
+    <div class="item-card" id="card-bbq-chicken">
+      <div class="item-info">
+        <div class="item-name">BBQ Chicken</div>
+        <div class="item-desc">BBQ sauce base, grilled chicken, red onion, mozzarella, coriander</div>
+        <div class="item-price">9.49 <span>JD</span></div>
+      </div>
+      <div class="qty-control">
+        <button class="qty-btn" onclick="changeQty('BBQ Chicken', 9.49, 1)">+</button>
+        <div class="qty-num" id="qty-BBQ Chicken">0</div>
+        <button class="qty-btn" onclick="changeQty('BBQ Chicken', 9.49, -1)">−</button>
+      </div>
+    </div>
+  </div>
 </div>
 
 <!-- PASTA -->
 <div class="section" id="pasta">
   <div class="section-title">🍝 Pasta</div>
-  <div class="items-grid" id="grid-pasta"></div>
-</div>
-
-<!-- FRIES -->
-<div class="section" id="fries">
-  <div class="section-title">🍟 Fries</div>
-  <div class="items-grid" id="grid-fries"></div>
-</div>
-
-<!-- SAUCES -->
-<div class="section" id="sauces">
-  <div class="section-title">🥫 Sauces</div>
-  <div class="items-grid" id="grid-sauces"></div>
+  <div class="items-grid">
+    <div class="item-card" id="card-bolognese">
+      <div class="item-info">
+        <div class="item-name">Spaghetti Bolognese</div>
+        <div class="item-desc">Slow-cooked beef ragù, spaghetti, parmesan, fresh basil</div>
+        <div class="item-price">7.49 <span>JD</span></div>
+      </div>
+      <div class="qty-control">
+        <button class="qty-btn" onclick="changeQty('Spaghetti Bolognese', 7.49, 1)">+</button>
+        <div class="qty-num" id="qty-Spaghetti Bolognese">0</div>
+        <button class="qty-btn" onclick="changeQty('Spaghetti Bolognese', 7.49, -1)">−</button>
+      </div>
+    </div>
+    <div class="item-card" id="card-arrabbiata">
+      <div class="item-info">
+        <div class="item-name">Penne Arrabbiata</div>
+        <div class="item-desc">Spicy tomato sauce, garlic, penne, fresh parsley</div>
+        <div class="item-price">6.99 <span>JD</span></div>
+      </div>
+      <div class="qty-control">
+        <button class="qty-btn" onclick="changeQty('Penne Arrabbiata', 6.99, 1)">+</button>
+        <div class="qty-num" id="qty-Penne Arrabbiata">0</div>
+        <button class="qty-btn" onclick="changeQty('Penne Arrabbiata', 6.99, -1)">−</button>
+      </div>
+    </div>
+    <div class="item-card" id="card-mushroom">
+      <div class="item-info">
+        <div class="item-name">Creamy Mushroom</div>
+        <div class="item-desc">Sautéed mushrooms, cream sauce, garlic, parmesan, fettuccine</div>
+        <div class="item-price">7.99 <span>JD</span></div>
+      </div>
+      <div class="qty-control">
+        <button class="qty-btn" onclick="changeQty('Creamy Mushroom', 7.99, 1)">+</button>
+        <div class="qty-num" id="qty-Creamy Mushroom">0</div>
+        <button class="qty-btn" onclick="changeQty('Creamy Mushroom', 7.99, -1)">−</button>
+      </div>
+    </div>
+  </div>
 </div>
 
 <!-- DRINKS -->
 <div class="section" id="drinks">
   <div class="section-title">🥤 Drinks</div>
-  <div class="items-grid" id="grid-drinks"></div>
-</div>
-
-<!-- SHAKES -->
-<div class="section" id="shakes">
-  <div class="section-title">🥛 Milkshakes</div>
-  <div class="items-grid" id="grid-shakes"></div>
+  <div class="items-grid">
+    <div class="item-card" id="card-soft-drinks">
+      <div class="item-info">
+        <div class="item-name">Soft Drinks</div>
+        <div class="item-desc">Pepsi, 7UP, or Miranda — your choice</div>
+        <div class="item-price">1.50 <span>JD</span></div>
+      </div>
+      <div class="qty-control">
+        <button class="qty-btn" onclick="changeQty('Soft Drinks', 1.50, 1)">+</button>
+        <div class="qty-num" id="qty-Soft Drinks">0</div>
+        <button class="qty-btn" onclick="changeQty('Soft Drinks', 1.50, -1)">−</button>
+      </div>
+    </div>
+    <div class="item-card" id="card-fresh-juice">
+      <div class="item-info">
+        <div class="item-name">Fresh Juice</div>
+        <div class="item-desc">Orange, watermelon, or lemon mint — freshly squeezed</div>
+        <div class="item-price">2.99 <span>JD</span></div>
+      </div>
+      <div class="qty-control">
+        <button class="qty-btn" onclick="changeQty('Fresh Juice', 2.99, 1)">+</button>
+        <div class="qty-num" id="qty-Fresh Juice">0</div>
+        <button class="qty-btn" onclick="changeQty('Fresh Juice', 2.99, -1)">−</button>
+      </div>
+    </div>
+    <div class="item-card" id="card-water">
+      <div class="item-info">
+        <div class="item-name">Water</div>
+        <div class="item-desc">Still water bottle 500ml</div>
+        <div class="item-price">0.75 <span>JD</span></div>
+      </div>
+      <div class="qty-control">
+        <button class="qty-btn" onclick="changeQty('Water', 0.75, 1)">+</button>
+        <div class="qty-num" id="qty-Water">0</div>
+        <button class="qty-btn" onclick="changeQty('Water', 0.75, -1)">−</button>
+      </div>
+    </div>
+  </div>
 </div>
 
 <div class="bottom-spacer"></div>
@@ -692,1096 +630,81 @@
       <div class="cart-total-label">Total</div>
       <div class="cart-total-amount" id="cartTotal">0.00 JD</div>
     </div>
-    <button class="order-btn" onclick="sendToTelegram()">✈️ Order via Telegram</button>
-  </div>
-</div>
-
-<!-- CUSTOMIZATION MODAL -->
-<div class="modal-overlay" id="modalOverlay" onclick="handleModalOverlayClick(event)">
-  <div class="modal" id="modal">
-    <div class="modal-handle"></div>
-    <div class="modal-header">
-      <div>
-        <div class="modal-title" id="modalTitle"></div>
-        <div class="modal-desc" id="modalDesc"></div>
-      </div>
-      <div style="display:flex;flex-direction:column;align-items:flex-end;gap:8px">
-        <button class="modal-close" onclick="closeModal()">✕</button>
-        <div class="modal-base-price" id="modalPrice"></div>
-      </div>
-    </div>
-    <div id="modalBody"></div>
-    <div class="custom-section">
-      <div class="custom-section-title">Quantity</div>
-      <div class="qty-stepper">
-        <button class="qty-stepper-btn" onclick="changeModalQty(-1)">−</button>
-        <div class="qty-stepper-num" id="modalQty">1</div>
-        <button class="qty-stepper-btn" onclick="changeModalQty(1)">+</button>
-      </div>
-    </div>
-    <button class="modal-add-btn" id="modalAddBtn" onclick="addToCartFromModal()">
-      Add to Order — <span id="modalTotalPrice">0.00 JD</span>
+    <button class="order-btn" onclick="sendToTelegram()">
+      ✈️ Order via Telegram
     </button>
   </div>
 </div>
 
 <script>
-const BOT_USERNAME = 'mino_restaurant_bot';
+  // ⚠️ REPLACE THIS with your actual bot username
+  const BOT_USERNAME = 'n8n_soc_alert_bot';
 
-// ===================== MENU DATA =====================
-const MENU = {
-  burgers: [
-    {
-      id: 'classic-smash', name: 'Classic Smash', emoji: '🍔',
-      desc: 'Smashed beef patty, American cheese, pickles, onion, special sauce',
-      price: 5.99,
-      customizations: [
-        { id: 'patty', label: 'Patty', type: 'single', required: true, options: [
-          { id: 'single', label: 'Single Patty', price: 0 },
-          { id: 'double', label: 'Double Patty', price: 2.00 },
-        ]},
-        { id: 'doneness', label: 'Doneness', type: 'single', required: true, options: [
-          { id: 'medium', label: 'Medium', price: 0 },
-          { id: 'medium-well', label: 'Medium Well', price: 0 },
-          { id: 'well-done', label: 'Well Done', price: 0 },
-        ]},
-        { id: 'extras', label: 'Extra Toppings', type: 'multi', options: [
-          { id: 'extra-cheese', label: 'Extra Cheese', price: 0.75 },
-          { id: 'extra-patty', label: 'Extra Patty', price: 2.00 },
-          { id: 'jalapenos', label: 'Jalapeños', price: 0.50 },
-          { id: 'avocado', label: 'Avocado', price: 1.00 },
-          { id: 'fried-egg', label: 'Fried Egg', price: 0.75 },
-          { id: 'bacon', label: 'Crispy Bacon', price: 1.50 },
-        ]},
-        { id: 'remove', label: 'Remove Ingredients', type: 'multi', options: [
-          { id: 'no-pickles', label: 'No Pickles', price: 0 },
-          { id: 'no-onion', label: 'No Onion', price: 0 },
-          { id: 'no-sauce', label: 'No Special Sauce', price: 0 },
-          { id: 'no-cheese', label: 'No Cheese', price: 0 },
-        ]},
-      ]
-    },
-    {
-      id: 'bacon-boss', name: 'Bacon Boss', emoji: '🥓',
-      desc: 'Beef patty, crispy streaky bacon, BBQ sauce, aged cheddar, lettuce, tomato',
-      price: 9.49,
-      customizations: [
-        { id: 'patty', label: 'Patty', type: 'single', required: true, options: [
-          { id: 'single', label: 'Single Patty', price: 0 },
-          { id: 'double', label: 'Double Patty', price: 2.00 },
-        ]},
-        { id: 'doneness', label: 'Doneness', type: 'single', required: true, options: [
-          { id: 'medium', label: 'Medium', price: 0 },
-          { id: 'medium-well', label: 'Medium Well', price: 0 },
-          { id: 'well-done', label: 'Well Done', price: 0 },
-        ]},
-        { id: 'extras', label: 'Extra Toppings', type: 'multi', options: [
-          { id: 'extra-cheese', label: 'Extra Cheese', price: 0.75 },
-          { id: 'extra-bacon', label: 'Extra Bacon', price: 1.50 },
-          { id: 'jalapenos', label: 'Jalapeños', price: 0.50 },
-          { id: 'avocado', label: 'Avocado', price: 1.00 },
-          { id: 'fried-egg', label: 'Fried Egg', price: 0.75 },
-        ]},
-        { id: 'remove', label: 'Remove Ingredients', type: 'multi', options: [
-          { id: 'no-bacon', label: 'No Bacon', price: 0 },
-          { id: 'no-lettuce', label: 'No Lettuce', price: 0 },
-          { id: 'no-tomato', label: 'No Tomato', price: 0 },
-          { id: 'no-cheese', label: 'No Cheese', price: 0 },
-        ]},
-      ]
-    },
-    {
-      id: 'inferno-burger', name: 'Inferno Burger 🌶️', emoji: '🔥',
-      desc: 'Double patty, ghost pepper sauce, jalapeños, pepper jack cheese, crispy onions',
-      price: 8.49,
-      badge: 'SPICY',
-      customizations: [
-        { id: 'heat', label: 'Heat Level', type: 'single', required: true, options: [
-          { id: 'medium', label: '🌶️ Medium', price: 0 },
-          { id: 'hot', label: '🌶️🌶️ Hot', price: 0 },
-          { id: 'inferno', label: '🌶️🌶️🌶️ Inferno', price: 0 },
-        ]},
-        { id: 'extras', label: 'Extra Toppings', type: 'multi', options: [
-          { id: 'extra-cheese', label: 'Extra Cheese', price: 0.75 },
-          { id: 'extra-jalapenos', label: 'Extra Jalapeños', price: 0.50 },
-          { id: 'avocado', label: 'Avocado (cooling)', price: 1.00 },
-          { id: 'sour-cream', label: 'Sour Cream', price: 0.75 },
-        ]},
-        { id: 'remove', label: 'Remove Ingredients', type: 'multi', options: [
-          { id: 'no-jalapenos', label: 'No Jalapeños', price: 0 },
-          { id: 'no-crispy-onions', label: 'No Crispy Onions', price: 0 },
-        ]},
-      ]
-    },
-    {
-      id: 'triple-cheese-stack', name: 'Triple Cheese Stack', emoji: '🧀',
-      desc: 'Triple patty, cheddar, gouda & brie, caramelized onions, truffle aioli',
-      price: 11.99,
-      customizations: [
-        { id: 'doneness', label: 'Doneness', type: 'single', required: true, options: [
-          { id: 'medium', label: 'Medium', price: 0 },
-          { id: 'medium-well', label: 'Medium Well', price: 0 },
-          { id: 'well-done', label: 'Well Done', price: 0 },
-        ]},
-        { id: 'extras', label: 'Extra Toppings', type: 'multi', options: [
-          { id: 'extra-cheese', label: 'Extra Cheese', price: 0.75 },
-          { id: 'bacon', label: 'Crispy Bacon', price: 1.50 },
-          { id: 'truffle-extra', label: 'Extra Truffle Aioli', price: 0.75 },
-        ]},
-        { id: 'remove', label: 'Remove Ingredients', type: 'multi', options: [
-          { id: 'no-brie', label: 'No Brie', price: 0 },
-          { id: 'no-onions', label: 'No Caramelized Onions', price: 0 },
-          { id: 'no-truffle', label: 'No Truffle Aioli', price: 0 },
-        ]},
-      ]
-    },
-    {
-      id: 'the-royal', name: 'The Royal 👑', emoji: '👑',
-      desc: 'Double wagyu patty, foie gras sauce, aged cheddar, gold brioche bun',
-      price: 16.99, badge: 'PREMIUM',
-      customizations: [
-        { id: 'doneness', label: 'Doneness', type: 'single', required: true, options: [
-          { id: 'medium-rare', label: 'Medium Rare', price: 0 },
-          { id: 'medium', label: 'Medium', price: 0 },
-          { id: 'medium-well', label: 'Medium Well', price: 0 },
-        ]},
-        { id: 'extras', label: 'Extra Toppings', type: 'multi', options: [
-          { id: 'extra-cheese', label: 'Extra Aged Cheddar', price: 1.00 },
-          { id: 'truffle', label: 'Truffle Aioli', price: 0.75 },
-          { id: 'foie-extra', label: 'Extra Foie Gras Sauce', price: 1.50 },
-        ]},
-        { id: 'remove', label: 'Remove Ingredients', type: 'multi', options: [
-          { id: 'no-cheese', label: 'No Cheese', price: 0 },
-          { id: 'no-foie', label: 'No Foie Gras Sauce', price: 0 },
-        ]},
-      ]
-    },
-    {
-      id: 'smoky-bbq-melt', name: 'Smoky BBQ Melt', emoji: '🥩',
-      desc: 'Smoked beef patty, BBQ sauce, melted gouda, crispy onion rings, pickles',
-      price: 8.99,
-      customizations: [
-        { id: 'patty', label: 'Patty', type: 'single', required: true, options: [
-          { id: 'single', label: 'Single Patty', price: 0 },
-          { id: 'double', label: 'Double Patty', price: 2.00 },
-        ]},
-        { id: 'doneness', label: 'Doneness', type: 'single', required: true, options: [
-          { id: 'medium', label: 'Medium', price: 0 },
-          { id: 'medium-well', label: 'Medium Well', price: 0 },
-          { id: 'well-done', label: 'Well Done', price: 0 },
-        ]},
-        { id: 'extras', label: 'Extra Toppings', type: 'multi', options: [
-          { id: 'extra-cheese', label: 'Extra Gouda', price: 0.75 },
-          { id: 'extra-onion-rings', label: 'Extra Onion Rings', price: 0.75 },
-          { id: 'bacon', label: 'Crispy Bacon', price: 1.50 },
-          { id: 'jalapenos', label: 'Jalapeños', price: 0.50 },
-        ]},
-        { id: 'remove', label: 'Remove Ingredients', type: 'multi', options: [
-          { id: 'no-pickles', label: 'No Pickles', price: 0 },
-          { id: 'no-onion-rings', label: 'No Onion Rings', price: 0 },
-          { id: 'no-bbq', label: 'No BBQ Sauce', price: 0 },
-        ]},
-      ]
-    },
-    {
-      id: 'mushroom-swiss', name: 'Mushroom Swiss', emoji: '🍄',
-      desc: 'Beef patty, sautéed mushrooms, swiss cheese, garlic aioli, fresh lettuce',
-      price: 7.99,
-      customizations: [
-        { id: 'patty', label: 'Patty', type: 'single', required: true, options: [
-          { id: 'single', label: 'Single Patty', price: 0 },
-          { id: 'double', label: 'Double Patty', price: 2.00 },
-        ]},
-        { id: 'doneness', label: 'Doneness', type: 'single', required: true, options: [
-          { id: 'medium', label: 'Medium', price: 0 },
-          { id: 'medium-well', label: 'Medium Well', price: 0 },
-          { id: 'well-done', label: 'Well Done', price: 0 },
-        ]},
-        { id: 'extras', label: 'Extra Toppings', type: 'multi', options: [
-          { id: 'extra-mushrooms', label: 'Extra Mushrooms', price: 0.75 },
-          { id: 'extra-cheese', label: 'Extra Swiss Cheese', price: 0.75 },
-          { id: 'truffle', label: 'Truffle Aioli', price: 0.75 },
-          { id: 'bacon', label: 'Crispy Bacon', price: 1.50 },
-        ]},
-        { id: 'remove', label: 'Remove Ingredients', type: 'multi', options: [
-          { id: 'no-mushrooms', label: 'No Mushrooms', price: 0 },
-          { id: 'no-aioli', label: 'No Garlic Aioli', price: 0 },
-          { id: 'no-lettuce', label: 'No Lettuce', price: 0 },
-        ]},
-      ]
-    },
-    {
-      id: 'crispy-chicken', name: 'Crispy Chicken 🍗', emoji: '🍗',
-      desc: 'Crispy fried chicken fillet, coleslaw, pickles, honey mustard sauce',
-      price: 7.49,
-      customizations: [
-        { id: 'heat', label: 'Chicken Style', type: 'single', required: true, options: [
-          { id: 'classic', label: 'Classic Crispy', price: 0 },
-          { id: 'spicy', label: 'Spicy Crispy 🌶️', price: 0 },
-          { id: 'grilled', label: 'Grilled (lighter)', price: 0 },
-        ]},
-        { id: 'extras', label: 'Extra Toppings', type: 'multi', options: [
-          { id: 'extra-cheese', label: 'Extra Cheese', price: 0.75 },
-          { id: 'avocado', label: 'Avocado', price: 1.00 },
-          { id: 'bacon', label: 'Crispy Bacon', price: 1.50 },
-          { id: 'extra-sauce', label: 'Extra Honey Mustard', price: 0.50 },
-        ]},
-        { id: 'remove', label: 'Remove Ingredients', type: 'multi', options: [
-          { id: 'no-coleslaw', label: 'No Coleslaw', price: 0 },
-          { id: 'no-pickles', label: 'No Pickles', price: 0 },
-          { id: 'no-sauce', label: 'No Honey Mustard', price: 0 },
-        ]},
-      ]
-    },
-  ],
+  let cart = {};
 
-  pizza: [
-    {
-      id: 'margherita', name: 'Margherita', emoji: '🍕',
-      desc: 'Classic tomato sauce, fresh mozzarella, basil leaves',
-      price: 6.99,
-      customizations: [
-        { id: 'size', label: 'Size', type: 'single', required: true, options: [
-          { id: 'small', label: 'Small (25cm)', sublabel: 'Serves 1', price: 0 },
-          { id: 'medium', label: 'Medium (30cm)', sublabel: 'Serves 2', price: 2.50 },
-          { id: 'large', label: 'Large (35cm)', sublabel: 'Serves 3–4', price: 4.50 },
-        ]},
-        { id: 'crust', label: 'Crust', type: 'single', required: true, options: [
-          { id: 'classic', label: 'Classic', price: 0 },
-          { id: 'thin', label: 'Thin & Crispy', price: 0 },
-          { id: 'thick', label: 'Thick & Fluffy', price: 0 },
-          { id: 'stuffed', label: 'Cheese Stuffed Crust', price: 1.50 },
-        ]},
-        { id: 'extras', label: 'Extra Toppings', type: 'multi', options: [
-          { id: 'extra-cheese', label: 'Extra Mozzarella', price: 1.00 },
-          { id: 'mushrooms', label: 'Mushrooms', price: 0.75 },
-          { id: 'olives', label: 'Black Olives', price: 0.75 },
-          { id: 'pepperoni', label: 'Pepperoni', price: 1.50 },
-          { id: 'jalap', label: 'Jalapeños', price: 0.75 },
-        ]},
-        { id: 'remove', label: 'Remove Ingredients', type: 'multi', options: [
-          { id: 'no-basil', label: 'No Basil', price: 0 },
-          { id: 'light-sauce', label: 'Light Tomato Sauce', price: 0 },
-        ]},
-      ]
-    },
-    {
-      id: 'pepperoni', name: 'Pepperoni', emoji: '🍕',
-      desc: 'Tomato sauce, mozzarella, premium pepperoni slices',
-      price: 8.99,
-      customizations: [
-        { id: 'size', label: 'Size', type: 'single', required: true, options: [
-          { id: 'small', label: 'Small (25cm)', sublabel: 'Serves 1', price: 0 },
-          { id: 'medium', label: 'Medium (30cm)', sublabel: 'Serves 2', price: 2.50 },
-          { id: 'large', label: 'Large (35cm)', sublabel: 'Serves 3–4', price: 4.50 },
-        ]},
-        { id: 'crust', label: 'Crust', type: 'single', required: true, options: [
-          { id: 'classic', label: 'Classic', price: 0 },
-          { id: 'thin', label: 'Thin & Crispy', price: 0 },
-          { id: 'thick', label: 'Thick & Fluffy', price: 0 },
-          { id: 'stuffed', label: 'Cheese Stuffed Crust', price: 1.50 },
-        ]},
-        { id: 'extras', label: 'Extra Toppings', type: 'multi', options: [
-          { id: 'extra-pepperoni', label: 'Extra Pepperoni', price: 1.50 },
-          { id: 'extra-cheese', label: 'Extra Mozzarella', price: 1.00 },
-          { id: 'mushrooms', label: 'Mushrooms', price: 0.75 },
-          { id: 'jalap', label: 'Jalapeños 🌶️', price: 0.75 },
-          { id: 'olives', label: 'Black Olives', price: 0.75 },
-        ]},
-        { id: 'remove', label: 'Remove Ingredients', type: 'multi', options: [
-          { id: 'light-sauce', label: 'Light Tomato Sauce', price: 0 },
-          { id: 'less-cheese', label: 'Light Cheese', price: 0 },
-        ]},
-      ]
-    },
-    {
-      id: 'bbq-chicken-pizza', name: 'BBQ Chicken', emoji: '🍗',
-      desc: 'BBQ sauce base, grilled chicken, red onion, mozzarella, coriander',
-      price: 9.49,
-      customizations: [
-        { id: 'size', label: 'Size', type: 'single', required: true, options: [
-          { id: 'small', label: 'Small (25cm)', sublabel: 'Serves 1', price: 0 },
-          { id: 'medium', label: 'Medium (30cm)', sublabel: 'Serves 2', price: 2.50 },
-          { id: 'large', label: 'Large (35cm)', sublabel: 'Serves 3–4', price: 4.50 },
-        ]},
-        { id: 'crust', label: 'Crust', type: 'single', required: true, options: [
-          { id: 'classic', label: 'Classic', price: 0 },
-          { id: 'thin', label: 'Thin & Crispy', price: 0 },
-          { id: 'thick', label: 'Thick & Fluffy', price: 0 },
-          { id: 'stuffed', label: 'Cheese Stuffed Crust', price: 1.50 },
-        ]},
-        { id: 'extras', label: 'Extra Toppings', type: 'multi', options: [
-          { id: 'extra-chicken', label: 'Extra Chicken', price: 1.50 },
-          { id: 'extra-cheese', label: 'Extra Mozzarella', price: 1.00 },
-          { id: 'jalap', label: 'Jalapeños', price: 0.75 },
-          { id: 'mushrooms', label: 'Mushrooms', price: 0.75 },
-        ]},
-        { id: 'remove', label: 'Remove Ingredients', type: 'multi', options: [
-          { id: 'no-coriander', label: 'No Coriander', price: 0 },
-          { id: 'no-red-onion', label: 'No Red Onion', price: 0 },
-        ]},
-      ]
-    },
-    {
-      id: 'four-cheese-pizza', name: 'Four Cheese 🧀', emoji: '🧀',
-      desc: 'Mozzarella, cheddar, gouda & parmesan blend on garlic oil base',
-      price: 10.49, badge: 'FAN FAV',
-      customizations: [
-        { id: 'size', label: 'Size', type: 'single', required: true, options: [
-          { id: 'small', label: 'Small (25cm)', sublabel: 'Serves 1', price: 0 },
-          { id: 'medium', label: 'Medium (30cm)', sublabel: 'Serves 2', price: 2.50 },
-          { id: 'large', label: 'Large (35cm)', sublabel: 'Serves 3–4', price: 4.50 },
-        ]},
-        { id: 'crust', label: 'Crust', type: 'single', required: true, options: [
-          { id: 'classic', label: 'Classic', price: 0 },
-          { id: 'thin', label: 'Thin & Crispy', price: 0 },
-          { id: 'thick', label: 'Thick & Fluffy', price: 0 },
-          { id: 'stuffed', label: 'Cheese Stuffed Crust', price: 1.50 },
-        ]},
-        { id: 'extras', label: 'Extra Toppings', type: 'multi', options: [
-          { id: 'truffle', label: 'Truffle Oil Drizzle', price: 1.00 },
-          { id: 'mushrooms', label: 'Mushrooms', price: 0.75 },
-          { id: 'jalap', label: 'Jalapeños', price: 0.75 },
-          { id: 'honey', label: 'Honey Drizzle', price: 0.50 },
-        ]},
-      ]
-    },
-    {
-      id: 'veggie-supreme', name: 'Veggie Supreme 🌿', emoji: '🌿',
-      desc: 'Tomato sauce, mozzarella, bell peppers, mushrooms, olives, red onion',
-      price: 8.49,
-      customizations: [
-        { id: 'size', label: 'Size', type: 'single', required: true, options: [
-          { id: 'small', label: 'Small (25cm)', sublabel: 'Serves 1', price: 0 },
-          { id: 'medium', label: 'Medium (30cm)', sublabel: 'Serves 2', price: 2.50 },
-          { id: 'large', label: 'Large (35cm)', sublabel: 'Serves 3–4', price: 4.50 },
-        ]},
-        { id: 'crust', label: 'Crust', type: 'single', required: true, options: [
-          { id: 'classic', label: 'Classic', price: 0 },
-          { id: 'thin', label: 'Thin & Crispy', price: 0 },
-          { id: 'thick', label: 'Thick & Fluffy', price: 0 },
-        ]},
-        { id: 'extras', label: 'Extra Toppings', type: 'multi', options: [
-          { id: 'extra-cheese', label: 'Extra Mozzarella', price: 1.00 },
-          { id: 'artichoke', label: 'Artichoke Hearts', price: 1.00 },
-          { id: 'sun-tomato', label: 'Sun-dried Tomatoes', price: 0.75 },
-          { id: 'jalap', label: 'Jalapeños', price: 0.75 },
-        ]},
-        { id: 'remove', label: 'Remove Ingredients', type: 'multi', options: [
-          { id: 'no-olives', label: 'No Olives', price: 0 },
-          { id: 'no-mushrooms', label: 'No Mushrooms', price: 0 },
-          { id: 'no-red-onion', label: 'No Red Onion', price: 0 },
-          { id: 'no-bell-peppers', label: 'No Bell Peppers', price: 0 },
-        ]},
-      ]
-    },
-  ],
-
-  pasta: [
-    {
-      id: 'spaghetti-bolognese', name: 'Spaghetti Bolognese', emoji: '🍝',
-      desc: 'Slow-cooked beef ragù, spaghetti, parmesan, fresh basil',
-      price: 7.49,
-      customizations: [
-        { id: 'size', label: 'Portion Size', type: 'single', required: true, options: [
-          { id: 'regular', label: 'Regular', price: 0 },
-          { id: 'large', label: 'Large (+50%)', price: 3.00 },
-        ]},
-        { id: 'extras', label: 'Extras', type: 'multi', options: [
-          { id: 'extra-parmesan', label: 'Extra Parmesan', price: 0.75 },
-          { id: 'extra-meat', label: 'Extra Meat Sauce', price: 1.50 },
-          { id: 'chili-flakes', label: 'Chili Flakes', price: 0 },
-          { id: 'garlic-bread', label: 'Add Garlic Bread', price: 1.50 },
-        ]},
-        { id: 'remove', label: 'Remove / Adjust', type: 'multi', options: [
-          { id: 'no-basil', label: 'No Basil', price: 0 },
-          { id: 'light-sauce', label: 'Light Sauce', price: 0 },
-        ]},
-      ]
-    },
-    {
-      id: 'penne-arrabbiata', name: 'Penne Arrabbiata', emoji: '🌶️',
-      desc: 'Spicy tomato sauce, garlic, penne, fresh parsley',
-      price: 6.99, badge: 'SPICY',
-      customizations: [
-        { id: 'heat', label: 'Spice Level', type: 'single', required: true, options: [
-          { id: 'mild', label: '🌶️ Mild', price: 0 },
-          { id: 'medium', label: '🌶️🌶️ Medium', price: 0 },
-          { id: 'hot', label: '🌶️🌶️🌶️ Hot', price: 0 },
-        ]},
-        { id: 'size', label: 'Portion Size', type: 'single', required: true, options: [
-          { id: 'regular', label: 'Regular', price: 0 },
-          { id: 'large', label: 'Large (+50%)', price: 3.00 },
-        ]},
-        { id: 'extras', label: 'Extras', type: 'multi', options: [
-          { id: 'extra-parmesan', label: 'Extra Parmesan', price: 0.75 },
-          { id: 'chicken', label: 'Add Grilled Chicken', price: 2.00 },
-          { id: 'garlic-bread', label: 'Add Garlic Bread', price: 1.50 },
-        ]},
-        { id: 'remove', label: 'Remove / Adjust', type: 'multi', options: [
-          { id: 'no-parsley', label: 'No Parsley', price: 0 },
-          { id: 'less-garlic', label: 'Less Garlic', price: 0 },
-        ]},
-      ]
-    },
-    {
-      id: 'creamy-mushroom', name: 'Creamy Mushroom', emoji: '🍄',
-      desc: 'Sautéed mushrooms, cream sauce, garlic, parmesan, fettuccine',
-      price: 7.99,
-      customizations: [
-        { id: 'size', label: 'Portion Size', type: 'single', required: true, options: [
-          { id: 'regular', label: 'Regular', price: 0 },
-          { id: 'large', label: 'Large (+50%)', price: 3.00 },
-        ]},
-        { id: 'extras', label: 'Extras', type: 'multi', options: [
-          { id: 'extra-mushrooms', label: 'Extra Mushrooms', price: 0.75 },
-          { id: 'extra-parmesan', label: 'Extra Parmesan', price: 0.75 },
-          { id: 'chicken', label: 'Add Grilled Chicken', price: 2.00 },
-          { id: 'truffle', label: 'Truffle Oil Drizzle', price: 1.00 },
-          { id: 'garlic-bread', label: 'Add Garlic Bread', price: 1.50 },
-        ]},
-        { id: 'remove', label: 'Remove / Adjust', type: 'multi', options: [
-          { id: 'light-cream', label: 'Light Cream Sauce', price: 0 },
-          { id: 'no-garlic', label: 'No Garlic', price: 0 },
-        ]},
-      ]
-    },
-    {
-      id: 'mac-and-cheese', name: 'Mac & Cheese 🧀', emoji: '🧀',
-      desc: 'Elbow pasta, triple cheese sauce, crispy breadcrumb crust',
-      price: 6.49,
-      customizations: [
-        { id: 'size', label: 'Portion Size', type: 'single', required: true, options: [
-          { id: 'regular', label: 'Regular', price: 0 },
-          { id: 'large', label: 'Large (+50%)', price: 3.00 },
-        ]},
-        { id: 'extras', label: 'Extras', type: 'multi', options: [
-          { id: 'extra-cheese', label: 'Extra Cheese Sauce', price: 0.75 },
-          { id: 'bacon', label: 'Add Crispy Bacon', price: 1.50 },
-          { id: 'jalap', label: 'Jalapeños', price: 0.50 },
-          { id: 'breadcrumb', label: 'Extra Crispy Crust', price: 0.50 },
-        ]},
-        { id: 'remove', label: 'Remove / Adjust', type: 'multi', options: [
-          { id: 'no-crust', label: 'No Breadcrumb Crust', price: 0 },
-        ]},
-      ]
-    },
-    {
-      id: 'pesto-chicken-pasta', name: 'Pesto Chicken', emoji: '🌿',
-      desc: 'Grilled chicken, basil pesto, cherry tomatoes, parmesan, fusilli',
-      price: 8.49,
-      customizations: [
-        { id: 'size', label: 'Portion Size', type: 'single', required: true, options: [
-          { id: 'regular', label: 'Regular', price: 0 },
-          { id: 'large', label: 'Large (+50%)', price: 3.00 },
-        ]},
-        { id: 'extras', label: 'Extras', type: 'multi', options: [
-          { id: 'extra-chicken', label: 'Extra Chicken', price: 2.00 },
-          { id: 'extra-pesto', label: 'Extra Pesto', price: 0.75 },
-          { id: 'extra-parmesan', label: 'Extra Parmesan', price: 0.75 },
-          { id: 'pine-nuts', label: 'Add Pine Nuts', price: 0.75 },
-          { id: 'garlic-bread', label: 'Add Garlic Bread', price: 1.50 },
-        ]},
-        { id: 'remove', label: 'Remove / Adjust', type: 'multi', options: [
-          { id: 'no-cherry-tomatoes', label: 'No Cherry Tomatoes', price: 0 },
-          { id: 'no-parmesan', label: 'No Parmesan', price: 0 },
-        ]},
-      ]
-    },
-  ],
-
-  fries: [
-    {
-      id: 'classic-fries', name: 'Classic Fries', emoji: '🍟',
-      desc: 'Golden crispy fries, lightly salted',
-      price: 2.49,
-      customizations: [
-        { id: 'size', label: 'Size', type: 'single', required: true, options: [
-          { id: 'regular', label: 'Regular', price: 0 },
-          { id: 'large', label: 'Large', price: 1.00 },
-        ]},
-        { id: 'seasoning', label: 'Seasoning', type: 'single', required: true, options: [
-          { id: 'salt', label: 'Classic Salt', price: 0 },
-          { id: 'cajun', label: 'Cajun Spice', price: 0 },
-          { id: 'garlic-herb', label: 'Garlic & Herb', price: 0 },
-          { id: 'no-salt', label: 'No Salt', price: 0 },
-        ]},
-        { id: 'extras', label: 'Add-ons', type: 'multi', options: [
-          { id: 'cheese-sauce', label: 'Cheese Sauce', price: 0.75 },
-          { id: 'garlic-mayo', label: 'Garlic Mayo', price: 0.50 },
-          { id: 'bbq-sauce', label: 'BBQ Sauce', price: 0.50 },
-          { id: 'parmesan', label: 'Parmesan Dust', price: 0.50 },
-        ]},
-      ]
-    },
-    {
-      id: 'cheese-fries', name: 'Cheese Fries', emoji: '🧀',
-      desc: 'Crispy fries topped with warm melted cheddar sauce',
-      price: 3.49,
-      customizations: [
-        { id: 'size', label: 'Size', type: 'single', required: true, options: [
-          { id: 'regular', label: 'Regular', price: 0 },
-          { id: 'large', label: 'Large', price: 1.00 },
-        ]},
-        { id: 'seasoning', label: 'Seasoning', type: 'single', required: true, options: [
-          { id: 'salt', label: 'Classic Salt', price: 0 },
-          { id: 'cajun', label: 'Cajun Spice', price: 0 },
-          { id: 'garlic-herb', label: 'Garlic & Herb', price: 0 },
-        ]},
-        { id: 'extras', label: 'Add-ons', type: 'multi', options: [
-          { id: 'extra-cheese', label: 'Extra Cheese Sauce', price: 0.75 },
-          { id: 'bacon', label: 'Crispy Bacon Bits', price: 1.00 },
-          { id: 'jalap', label: 'Jalapeños', price: 0.50 },
-          { id: 'sour-cream', label: 'Sour Cream', price: 0.75 },
-        ]},
-      ]
-    },
-    {
-      id: 'loaded-fries', name: 'Loaded Fries 🔥', emoji: '🔥',
-      desc: 'Fries with cheddar sauce, crispy bacon bits, jalapeños, sour cream',
-      price: 4.99, badge: 'BESTSELLER',
-      customizations: [
-        { id: 'size', label: 'Size', type: 'single', required: true, options: [
-          { id: 'regular', label: 'Regular', price: 0 },
-          { id: 'large', label: 'Large', price: 1.00 },
-        ]},
-        { id: 'heat', label: 'Heat Level', type: 'single', required: true, options: [
-          { id: 'mild', label: '🌶️ Mild Jalapeños', price: 0 },
-          { id: 'hot', label: '🌶️🌶️ Extra Jalapeños', price: 0 },
-          { id: 'no-jalap', label: 'No Jalapeños', price: 0 },
-        ]},
-        { id: 'extras', label: 'Add-ons', type: 'multi', options: [
-          { id: 'extra-cheese', label: 'Extra Cheese Sauce', price: 0.75 },
-          { id: 'extra-bacon', label: 'Extra Bacon', price: 1.00 },
-          { id: 'avocado', label: 'Avocado', price: 1.00 },
-          { id: 'pulled-chicken', label: 'Pulled Chicken', price: 1.50 },
-        ]},
-        { id: 'remove', label: 'Remove Ingredients', type: 'multi', options: [
-          { id: 'no-sour-cream', label: 'No Sour Cream', price: 0 },
-          { id: 'no-bacon', label: 'No Bacon', price: 0 },
-        ]},
-      ]
-    },
-    {
-      id: 'truffle-fries', name: 'Truffle Fries ✨', emoji: '✨',
-      desc: 'Fries tossed in truffle oil, parmesan shavings, fresh parsley',
-      price: 4.49, badge: 'PREMIUM',
-      customizations: [
-        { id: 'size', label: 'Size', type: 'single', required: true, options: [
-          { id: 'regular', label: 'Regular', price: 0 },
-          { id: 'large', label: 'Large', price: 1.00 },
-        ]},
-        { id: 'extras', label: 'Add-ons', type: 'multi', options: [
-          { id: 'extra-parmesan', label: 'Extra Parmesan', price: 0.75 },
-          { id: 'extra-truffle', label: 'Extra Truffle Oil', price: 1.00 },
-          { id: 'truffle-aioli', label: 'Truffle Aioli Dip', price: 0.75 },
-        ]},
-        { id: 'remove', label: 'Remove / Adjust', type: 'multi', options: [
-          { id: 'no-parsley', label: 'No Parsley', price: 0 },
-          { id: 'less-truffle', label: 'Light Truffle', price: 0 },
-        ]},
-      ]
-    },
-  ],
-
-  sauces: [
-    { id: 'garlic-mayo', name: 'Garlic Mayo', emoji: '🧄', desc: 'Creamy garlic mayonnaise', price: 0.50, customizations: [] },
-    { id: 'bbq-sauce', name: 'BBQ Sauce', emoji: '🥫', desc: 'Smoky sweet BBQ sauce', price: 0.50, customizations: [] },
-    { id: 'spicy-sriracha', name: 'Spicy Sriracha', emoji: '🌶️', desc: 'Hot sriracha chili sauce', price: 0.50, customizations: [] },
-    { id: 'truffle-aioli', name: 'Truffle Aioli', emoji: '✨', desc: 'Luxurious truffle-infused aioli', price: 0.75, badge: 'PREMIUM', customizations: [] },
-    { id: 'cheese-sauce', name: 'Cheese Sauce', emoji: '🧀', desc: 'Warm cheddar dipping sauce', price: 0.75, customizations: [] },
-  ],
-
-  drinks: [
-    {
-      id: 'cola', name: 'Cola', emoji: '🥤',
-      desc: 'Ice cold Pepsi',
-      price: 1.50,
-      customizations: [
-        { id: 'ice', label: 'Ice', type: 'single', required: true, options: [
-          { id: 'with-ice', label: '🧊 With Ice', price: 0 },
-          { id: 'no-ice', label: 'No Ice', price: 0 },
-          { id: 'extra-ice', label: '🧊🧊 Extra Ice', price: 0 },
-        ]},
-      ]
-    },
-    {
-      id: 'lemon-soda', name: 'Lemon Soda', emoji: '🟡',
-      desc: 'Ice cold 7UP',
-      price: 1.50,
-      customizations: [
-        { id: 'ice', label: 'Ice', type: 'single', required: true, options: [
-          { id: 'with-ice', label: '🧊 With Ice', price: 0 },
-          { id: 'no-ice', label: 'No Ice', price: 0 },
-          { id: 'extra-ice', label: '🧊🧊 Extra Ice', price: 0 },
-        ]},
-      ]
-    },
-    {
-      id: 'orange-soda', name: 'Orange Soda', emoji: '🟠',
-      desc: 'Ice cold Miranda Orange',
-      price: 1.50,
-      customizations: [
-        { id: 'ice', label: 'Ice', type: 'single', required: true, options: [
-          { id: 'with-ice', label: '🧊 With Ice', price: 0 },
-          { id: 'no-ice', label: 'No Ice', price: 0 },
-          { id: 'extra-ice', label: '🧊🧊 Extra Ice', price: 0 },
-        ]},
-      ]
-    },
-    {
-      id: 'orange-juice', name: 'Orange Juice 🍊', emoji: '🍊',
-      desc: 'Freshly squeezed orange juice',
-      price: 2.99,
-      customizations: [
-        { id: 'size', label: 'Size', type: 'single', required: true, options: [
-          { id: 'regular', label: 'Regular (300ml)', price: 0 },
-          { id: 'large', label: 'Large (500ml)', price: 1.50 },
-        ]},
-        { id: 'ice', label: 'Ice', type: 'single', required: true, options: [
-          { id: 'with-ice', label: '🧊 With Ice', price: 0 },
-          { id: 'no-ice', label: 'No Ice', price: 0 },
-          { id: 'extra-ice', label: '🧊🧊 Extra Ice', price: 0 },
-        ]},
-        { id: 'extras', label: 'Extras', type: 'multi', options: [
-          { id: 'mint', label: 'Add Fresh Mint', price: 0.25 },
-          { id: 'ginger', label: 'Add Ginger', price: 0.25 },
-        ]},
-      ]
-    },
-    {
-      id: 'watermelon-juice', name: 'Watermelon Juice 🍉', emoji: '🍉',
-      desc: 'Fresh cold watermelon juice',
-      price: 2.99,
-      customizations: [
-        { id: 'size', label: 'Size', type: 'single', required: true, options: [
-          { id: 'regular', label: 'Regular (300ml)', price: 0 },
-          { id: 'large', label: 'Large (500ml)', price: 1.50 },
-        ]},
-        { id: 'ice', label: 'Ice', type: 'single', required: true, options: [
-          { id: 'with-ice', label: '🧊 With Ice', price: 0 },
-          { id: 'no-ice', label: 'No Ice', price: 0 },
-          { id: 'extra-ice', label: '🧊🧊 Extra Ice', price: 0 },
-        ]},
-        { id: 'extras', label: 'Extras', type: 'multi', options: [
-          { id: 'mint', label: 'Add Fresh Mint', price: 0.25 },
-          { id: 'lime', label: 'Add Lime', price: 0.25 },
-        ]},
-      ]
-    },
-    {
-      id: 'lemon-mint', name: 'Lemon Mint 🍋', emoji: '🍋',
-      desc: 'Fresh lemonade with mint leaves',
-      price: 2.99,
-      customizations: [
-        { id: 'size', label: 'Size', type: 'single', required: true, options: [
-          { id: 'regular', label: 'Regular (300ml)', price: 0 },
-          { id: 'large', label: 'Large (500ml)', price: 1.50 },
-        ]},
-        { id: 'sweetness', label: 'Sweetness', type: 'single', required: true, options: [
-          { id: 'regular', label: 'Regular Sweet', price: 0 },
-          { id: 'less-sweet', label: 'Less Sweet', price: 0 },
-          { id: 'no-sugar', label: 'No Sugar', price: 0 },
-          { id: 'extra-sweet', label: 'Extra Sweet', price: 0 },
-        ]},
-        { id: 'ice', label: 'Ice', type: 'single', required: true, options: [
-          { id: 'with-ice', label: '🧊 With Ice', price: 0 },
-          { id: 'no-ice', label: 'No Ice', price: 0 },
-          { id: 'extra-ice', label: '🧊🧊 Extra Ice', price: 0 },
-        ]},
-        { id: 'extras', label: 'Extras', type: 'multi', options: [
-          { id: 'extra-mint', label: 'Extra Mint', price: 0.25 },
-          { id: 'ginger', label: 'Add Ginger', price: 0.25 },
-        ]},
-      ]
-    },
-    {
-      id: 'water', name: 'Water 💧', emoji: '💧',
-      desc: 'Still water bottle 500ml',
-      price: 0.75,
-      customizations: []
-    },
-  ],
-
-  shakes: [
-    {
-      id: 'chocolate-shake', name: 'Chocolate Shake 🍫', emoji: '🍫',
-      desc: 'Rich chocolate milkshake topped with whipped cream',
-      price: 3.99,
-      customizations: [
-        { id: 'size', label: 'Size', type: 'single', required: true, options: [
-          { id: 'regular', label: 'Regular (400ml)', price: 0 },
-          { id: 'large', label: 'Large (600ml)', price: 1.50 },
-        ]},
-        { id: 'extras', label: 'Add-ons', type: 'multi', options: [
-          { id: 'extra-cream', label: 'Extra Whipped Cream', price: 0.50 },
-          { id: 'oreo', label: 'Add Oreo Crumble', price: 0.75 },
-          { id: 'choc-sauce', label: 'Extra Chocolate Sauce', price: 0.50 },
-          { id: 'nutella', label: 'Add Nutella Swirl', price: 0.75 },
-        ]},
-        { id: 'remove', label: 'Remove / Adjust', type: 'multi', options: [
-          { id: 'no-cream', label: 'No Whipped Cream', price: 0 },
-        ]},
-      ]
-    },
-    {
-      id: 'vanilla-shake', name: 'Vanilla Shake', emoji: '🍦',
-      desc: 'Classic creamy vanilla milkshake',
-      price: 3.99,
-      customizations: [
-        { id: 'size', label: 'Size', type: 'single', required: true, options: [
-          { id: 'regular', label: 'Regular (400ml)', price: 0 },
-          { id: 'large', label: 'Large (600ml)', price: 1.50 },
-        ]},
-        { id: 'extras', label: 'Add-ons', type: 'multi', options: [
-          { id: 'extra-cream', label: 'Extra Whipped Cream', price: 0.50 },
-          { id: 'caramel', label: 'Caramel Drizzle', price: 0.50 },
-          { id: 'cookie-butter', label: 'Cookie Butter Swirl', price: 0.75 },
-          { id: 'sprinkles', label: 'Sprinkles', price: 0.25 },
-        ]},
-        { id: 'remove', label: 'Remove / Adjust', type: 'multi', options: [
-          { id: 'no-cream', label: 'No Whipped Cream', price: 0 },
-        ]},
-      ]
-    },
-    {
-      id: 'strawberry-shake', name: 'Strawberry Shake 🍓', emoji: '🍓',
-      desc: 'Fresh strawberry milkshake',
-      price: 3.99,
-      customizations: [
-        { id: 'size', label: 'Size', type: 'single', required: true, options: [
-          { id: 'regular', label: 'Regular (400ml)', price: 0 },
-          { id: 'large', label: 'Large (600ml)', price: 1.50 },
-        ]},
-        { id: 'extras', label: 'Add-ons', type: 'multi', options: [
-          { id: 'extra-cream', label: 'Extra Whipped Cream', price: 0.50 },
-          { id: 'fresh-strawberries', label: 'Fresh Strawberries', price: 0.75 },
-          { id: 'choc-sauce', label: 'Chocolate Sauce', price: 0.50 },
-          { id: 'oreo', label: 'Oreo Crumble', price: 0.75 },
-        ]},
-        { id: 'remove', label: 'Remove / Adjust', type: 'multi', options: [
-          { id: 'no-cream', label: 'No Whipped Cream', price: 0 },
-        ]},
-      ]
-    },
-  ]
-};
-
-// ===================== STATE =====================
-let cart = [];
-let currentItem = null;
-let currentSelections = {};
-let currentQty = 1;
-
-// ===================== RENDER MENU CARDS =====================
-function renderMenus() {
-  Object.keys(MENU).forEach(category => {
-    const grid = document.getElementById('grid-' + category);
-    if (!grid) return;
-    MENU[category].forEach(item => {
-      grid.innerHTML += buildCard(item, category);
-    });
-  });
-}
-
-function buildCard(item, category) {
-  const cartCount = getItemCartCount(item.id);
-  return `
-    <div class="item-card ${cartCount > 0 ? 'in-cart' : ''}" id="card-${item.id}" onclick="openModal('${category}', '${item.id}')">
-      ${item.badge ? `<div class="item-badge">${item.badge}</div>` : ''}
-      <div class="item-name">${item.name}</div>
-      <div class="item-desc">${item.desc}</div>
-      <div class="item-footer">
-        <div>
-          <div class="item-price">${item.price.toFixed(2)} <span>JD${item.customizations.length > 0 ? '+' : ''}</span></div>
-          ${item.customizations.length > 0 ? '<div class="item-from" style="font-size:11px;color:var(--muted);margin-top:2px;">Tap to customize</div>' : ''}
-        </div>
-        <button class="add-btn" onclick="event.stopPropagation(); openModal('${category}', '${item.id}')">+</button>
-      </div>
-      <div class="cart-indicator ${cartCount > 0 ? 'show' : ''}" id="indicator-${item.id}">
-        <div class="cart-indicator-text">In your order</div>
-        <div class="cart-indicator-count">${cartCount}</div>
-      </div>
-    </div>
-  `;
-}
-
-function getItemCartCount(itemId) {
-  return cart.filter(c => c.itemId === itemId).reduce((s, c) => s + c.qty, 0);
-}
-
-// ===================== MODAL =====================
-function openModal(category, itemId) {
-  const item = MENU[category].find(i => i.id === itemId);
-  if (!item) return;
-  currentItem = { ...item, category };
-  currentSelections = {};
-  currentQty = 1;
-
-  // Set defaults for required singles
-  item.customizations.forEach(group => {
-    if (group.type === 'single' && group.required && group.options.length > 0) {
-      currentSelections[group.id] = [group.options[0].id];
-    }
-  });
-
-  document.getElementById('modalTitle').textContent = item.name;
-  document.getElementById('modalDesc').textContent = item.desc;
-  document.getElementById('modalPrice').textContent = item.price.toFixed(2) + ' JD';
-  document.getElementById('modalQty').textContent = '1';
-
-  const body = document.getElementById('modalBody');
-
-  if (item.customizations.length === 0) {
-    body.innerHTML = '';
-  } else {
-    body.innerHTML = item.customizations.map(group => buildCustomGroup(group)).join('');
+  function changeQty(name, price, delta) {
+    if (!cart[name]) cart[name] = { price, qty: 0 };
+    cart[name].qty = Math.max(0, cart[name].qty + delta);
+    if (cart[name].qty === 0) delete cart[name];
+    updateUI(name);
+    updateCart();
   }
 
-  updateModalPrice();
-  document.getElementById('modalOverlay').classList.add('show');
-  document.body.style.overflow = 'hidden';
-}
+  function updateUI(name) {
+    const el = document.getElementById('qty-' + name);
+    if (el) el.textContent = cart[name] ? cart[name].qty : 0;
+  }
 
-function buildCustomGroup(group) {
-  const isRequired = group.required;
-  const isMulti = group.type === 'multi';
+  function updateCart() {
+    const total = Object.values(cart).reduce((s, i) => s + i.price * i.qty, 0);
+    const count = Object.values(cart).reduce((s, i) => s + i.qty, 0);
+    document.getElementById('cartCount').textContent = count;
 
-  const optionsHTML = group.options.map(opt => {
-    const isDefault = currentSelections[group.id] && currentSelections[group.id].includes(opt.id);
-    const priceLabel = opt.price === 0
-      ? (isMulti ? '<span class="option-price free">Free</span>' : '')
-      : `<span class="option-price">+${opt.price.toFixed(2)} JD</span>`;
+    const itemsEl = document.getElementById('cartItems');
+    const footerEl = document.getElementById('cartFooter');
 
-    if (isMulti) {
-      return `
-        <div class="toggle-item ${isDefault ? 'selected' : ''}" onclick="toggleMulti('${group.id}', '${opt.id}', this)">
-          <div style="display:flex;align-items:center;gap:10px;flex:1">
-            <div class="toggle-check">${isDefault ? '✓' : ''}</div>
-            <div>
-              <div class="option-label">${opt.label}</div>
-              ${opt.sublabel ? `<div class="option-sublabel">${opt.sublabel}</div>` : ''}
-            </div>
-          </div>
-          ${priceLabel}
-        </div>
-      `;
+    if (count === 0) {
+      itemsEl.innerHTML = '<div class="empty-cart">No items yet. Add something delicious! 🍽️</div>';
+      footerEl.style.display = 'none';
     } else {
-      // Check if options fit in a grid (short labels)
-      return `
-        <div class="option-item ${isDefault ? 'selected' : ''}" onclick="selectSingle('${group.id}', '${opt.id}', this)">
-          <div class="option-left">
-            <div class="option-radio"></div>
-            <div>
-              <div class="option-label">${opt.label}</div>
-              ${opt.sublabel ? `<div class="option-sublabel">${opt.sublabel}</div>` : ''}
-            </div>
+      itemsEl.innerHTML = Object.entries(cart).map(([name, { price, qty }]) => `
+        <div class="cart-item">
+          <div>
+            <div class="cart-item-name">${name}</div>
+            <div class="cart-item-qty">x${qty} × ${price.toFixed(2)} JD</div>
           </div>
-          ${priceLabel}
+          <div class="cart-item-price">${(price * qty).toFixed(2)} JD</div>
         </div>
-      `;
+      `).join('');
+      document.getElementById('cartTotal').textContent = total.toFixed(2) + ' JD';
+      footerEl.style.display = 'block';
     }
-  }).join('');
-
-  const listClass = isMulti ? 'toggle-list' : 'option-list';
-
-  return `
-    <div class="custom-section">
-      <div class="custom-section-title">
-        ${group.label}
-        ${isRequired ? '<span class="required">Required</span>' : '<span class="optional">Optional</span>'}
-      </div>
-      <div class="${listClass}">${optionsHTML}</div>
-    </div>
-  `;
-}
-
-function selectSingle(groupId, optId, el) {
-  currentSelections[groupId] = [optId];
-  // Update UI
-  el.parentElement.querySelectorAll('.option-item').forEach(item => {
-    item.classList.remove('selected');
-    item.querySelector('.option-radio').innerHTML = '';
-  });
-  el.classList.add('selected');
-  el.querySelector('.option-radio').innerHTML = '';
-  updateModalPrice();
-}
-
-function toggleMulti(groupId, optId, el) {
-  if (!currentSelections[groupId]) currentSelections[groupId] = [];
-  const idx = currentSelections[groupId].indexOf(optId);
-  if (idx === -1) {
-    currentSelections[groupId].push(optId);
-    el.classList.add('selected');
-    el.querySelector('.toggle-check').textContent = '✓';
-  } else {
-    currentSelections[groupId].splice(idx, 1);
-    el.classList.remove('selected');
-    el.querySelector('.toggle-check').textContent = '';
-  }
-  updateModalPrice();
-}
-
-function changeModalQty(delta) {
-  currentQty = Math.max(1, currentQty + delta);
-  document.getElementById('modalQty').textContent = currentQty;
-  updateModalPrice();
-}
-
-function updateModalPrice() {
-  if (!currentItem) return;
-  let total = currentItem.price;
-
-  currentItem.customizations.forEach(group => {
-    const selected = currentSelections[group.id] || [];
-    selected.forEach(optId => {
-      const opt = group.options.find(o => o.id === optId);
-      if (opt) total += opt.price;
-    });
-  });
-
-  const finalTotal = total * currentQty;
-  document.getElementById('modalTotalPrice').textContent = finalTotal.toFixed(2) + ' JD';
-
-  // Check required
-  const allRequired = currentItem.customizations
-    .filter(g => g.required)
-    .every(g => currentSelections[g.id] && currentSelections[g.id].length > 0);
-  document.getElementById('modalAddBtn').disabled = !allRequired;
-}
-
-function closeModal() {
-  document.getElementById('modalOverlay').classList.remove('show');
-  document.body.style.overflow = '';
-  currentItem = null;
-}
-
-function handleModalOverlayClick(e) {
-  if (e.target === document.getElementById('modalOverlay')) closeModal();
-}
-
-// ===================== ADD TO CART =====================
-function addToCartFromModal() {
-  if (!currentItem) return;
-
-  let itemTotal = currentItem.price;
-  const mods = [];
-
-  currentItem.customizations.forEach(group => {
-    const selected = currentSelections[group.id] || [];
-    selected.forEach(optId => {
-      const opt = group.options.find(o => o.id === optId);
-      if (opt) {
-        itemTotal += opt.price;
-        mods.push({ label: opt.label, price: opt.price });
-      }
-    });
-  });
-
-  cart.push({
-    id: Date.now(),
-    itemId: currentItem.id,
-    name: currentItem.name,
-    basePrice: currentItem.price,
-    mods,
-    unitPrice: itemTotal,
-    qty: currentQty,
-    totalPrice: itemTotal * currentQty,
-  });
-
-  closeModal();
-  updateCartUI();
-  updateCardIndicators(currentItem.id);
-}
-
-function updateCardIndicators(itemId) {
-  const count = getItemCartCount(itemId);
-  const card = document.getElementById('card-' + itemId);
-  const indicator = document.getElementById('indicator-' + itemId);
-  if (card) card.classList.toggle('in-cart', count > 0);
-  if (indicator) {
-    indicator.classList.toggle('show', count > 0);
-    const countEl = indicator.querySelector('.cart-indicator-count');
-    if (countEl) countEl.textContent = count;
-  }
-}
-
-function removeFromCart(cartId) {
-  const entry = cart.find(c => c.id === cartId);
-  cart = cart.filter(c => c.id !== cartId);
-  updateCartUI();
-  if (entry) updateCardIndicators(entry.itemId);
-}
-
-function updateCartUI() {
-  const total = cart.reduce((s, c) => s + c.totalPrice, 0);
-  const count = cart.reduce((s, c) => s + c.qty, 0);
-  document.getElementById('cartCount').textContent = count;
-
-  const itemsEl = document.getElementById('cartItems');
-  const footerEl = document.getElementById('cartFooter');
-
-  if (cart.length === 0) {
-    itemsEl.innerHTML = '<div class="empty-cart">No items yet. Add something delicious! 🍽️</div>';
-    footerEl.style.display = 'none';
-    return;
   }
 
-  itemsEl.innerHTML = cart.map(entry => {
-    const modText = entry.mods.map(m => m.label).join(', ');
-    return `
-      <div class="cart-item">
-        <div class="cart-item-info">
-          <div class="cart-item-name">${entry.name} ×${entry.qty}</div>
-          ${modText ? `<div class="cart-item-mods">${modText}</div>` : ''}
-        </div>
-        <div class="cart-item-right">
-          <div class="cart-item-price">${entry.totalPrice.toFixed(2)} JD</div>
-          <button class="cart-item-remove" onclick="removeFromCart(${entry.id})">Remove</button>
-        </div>
-      </div>
-    `;
-  }).join('');
+  function toggleCart() {
+    const panel = document.getElementById('cartPanel');
+    const overlay = document.getElementById('overlay');
+    panel.classList.toggle('open');
+    overlay.classList.toggle('show');
+  }
 
-  document.getElementById('cartTotal').textContent = total.toFixed(2) + ' JD';
-  footerEl.style.display = 'block';
-}
-
-// ===================== TELEGRAM =====================
-function sendToTelegram() {
+ function sendToTelegram() {
   if (cart.length === 0) return;
 
-  const orderParts = cart.map(entry => {
-    let part = entry.name.replace(/\s+/g, '-').replace(/[^a-zA-Z0-9\-]/g, '') + '-x' + entry.qty;
-    if (entry.mods.length > 0) {
-      const modStr = entry.mods.map(m => m.label.replace(/\s+/g, '_')).join(',');
-      part += '[' + modStr + ']';
-    }
-    return part;
-  }).join('_');
+  const orderParts = cart.map(entry =>
+    `${entry.name.replace(/\s+/g, '-')}-x${entry.qty}`
+  ).join('_');
 
   const startParam = 'order_' + orderParts;
   const url = `https://t.me/${BOT_USERNAME}?start=${encodeURIComponent(startParam)}`;
   window.open(url, '_blank');
 }
 
-// ===================== UI HELPERS =====================
-function toggleCart() {
-  const panel = document.getElementById('cartPanel');
-  const overlay = document.getElementById('overlay');
-  panel.classList.toggle('open');
-  overlay.classList.toggle('show');
-}
-
-function scrollToSection(id, tabEl) {
-  document.getElementById(id).scrollIntoView({ behavior: 'smooth', block: 'start' });
-  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
-  tabEl.classList.add('active');
-}
-
-// ===================== INIT =====================
-renderMenus();
+  function scrollTo(id, tabEl) {
+    document.getElementById(id).scrollIntoView({ behavior: 'smooth', block: 'start' });
+    document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+    tabEl.classList.add('active');
+  }
 </script>
 </body>
 </html>
