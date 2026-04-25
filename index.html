@@ -1755,7 +1755,7 @@ function sendToTelegram() {
   const orderParts = cart.map(entry => {
     const name = entry.name.replace(/\s+/g, '-');
     const mods = entry.mods && entry.mods.length > 0
-      ? '[' + entry.mods.map(m => m.label.replace(/\s+/g, '-')).join('|') + ']'
+      ? '--' + entry.mods.map(m => m.label.replace(/\s+/g, '-')).join('-')
       : '';
     return `${name}${mods}-x${entry.qty}`;
   }).join('_');
