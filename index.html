@@ -1752,17 +1752,9 @@ function updateCartUI() {
 function sendToTelegram() {
   if (cart.length === 0) return;
 
-  const orderParts = cart.map(entry => {
-    let part = entry.name.replace(/[^a-zA-Z0-9\s]/g, '').trim().replace(/\s+/g, '-') + '-x' + entry.qty;
-    if (entry.mods && entry.mods.length > 0) {
-      const modStr = entry.mods
-        .map(m => m.label.replace(/\s+/g, '-').replace(/[^a-zA-Z0-9\-]/g, ''))
-        .filter(m => m.length > 0)
-        .join(',');
-      if (modStr) part += '-mods-' + modStr;
-    }
-    return part;
-  }).join('_');
+  const orderParts = cart.map(entry =>
+    `${entry.name.replace(/\s+/g, '-')}-x${entry.qty}`
+  ).join('_');
 
   const startParam = 'order_' + orderParts;
   const url = `https://t.me/${BOT_USERNAME}?start=${encodeURIComponent(startParam)}`;
