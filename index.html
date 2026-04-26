@@ -1752,13 +1752,45 @@ function updateCartUI() {
 function sendToTelegram() {
   if (cart.length === 0) return;
 
-  const orderParts = cart.map(entry =>
-    `${entry.name.replace(/\s+/g, '-')}-x${entry.qty}`
-  ).join('_');
+  // Get chat_id from URL parameter
+  const urlParams = new URLSearchParams(window.location.search);
+  const chatId = urlParams.get('chat_id');
 
-  const startParam = 'order_' + orderParts;
-  const url = `https://t.me/${BOT_USERNAME}?start=${encodeURIComponent(startParam)}`;
-  window.open(url, '_blank');
+  // Build order string with full customization details
+  const orderParts = cart.map(entry => {
+    let part = `${entry.name.replace(/\s+/g, '-')}-x${entry.qty}`;
+    if (entry.mods && entry.mods.length > 0) {
+      const modsStr = entry.mods.map(m => m.label.replace(/\s+/g, '-')).join(',');
+      part += `-mods-${modsStr}`;
+    }
+    return part;
+  }).join('_');
+
+  const orderString = 'order_' + orderParts;
+
+  if (chatId) {
+    // Send via webhook — no length limit, full details included
+    fetch('https://incisive-ambiguously-matilda.ngrok-free.dev/webhook/miniresto-order', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        orderString: orderString,
+        chat_id: chatId
+      })
+    }).then(res => {
+      if (res.ok) {
+        alert('✅ Order sent! Check Telegram for confirmation from Mino.');
+      } else {
+        alert('Something went wrong. Please try again.');
+      }
+    }).catch(() => {
+      alert('Connection error. Please try again.');
+    });
+  } else {
+    // Fallback — no chat_id in URL, open Telegram directly
+    const startParam = orderString.substring(0, 60);
+    window.open(`https://t.me/${BOT_USERNAME}?start=${encodeURIComponent(startParam)}`, '_blank');
+  }
 }
 
 
