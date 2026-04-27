@@ -1752,30 +1752,40 @@ function updateCartUI() {
 function sendToTelegram() {
   if (cart.length === 0) return;
 
-  // Get chat_id from URL parameter
   const urlParams = new URLSearchParams(window.location.search);
   const chatId = urlParams.get('chat_id');
 
-  // Build order string with full customization details
-  const orderParts = cart.map(entry => {
-    let part = `${entry.name.replace(/\s+/g, '-')}-x${entry.qty}`;
-    if (entry.mods && entry.mods.length > 0) {
-      const modsStr = entry.mods.map(m => m.label.replace(/\s+/g, '-')).join(',');
-      part += `-mods-${modsStr}`;
-    }
-    return part;
-  }).join('_');
+  // Build structured items array — one object per cart entry
+  const items = cart.map(entry => ({
+    name: entry.name,
+    qty: entry.qty,
+    base_price: parseFloat(entry.basePrice.toFixed(2)),
+    mods: entry.mods.map(m => ({ label: m.label, price: parseFloat(m.price.toFixed(2)) })),
+    unit_price: parseFloat(entry.unitPrice.toFixed(2)),
+    total_price: parseFloat(entry.totalPrice.toFixed(2))
+  }));
 
-  const orderString = 'order_' + orderParts;
+  // Human-readable summary for the AI agent prompt
+  const orderString = items.map(item => {
+    let line = `• ${item.name} x${item.qty}`;
+    if (item.mods.length > 0) {
+      line += ` — ${item.mods.map(m => m.label).join(', ')}`;
+    }
+    line += ` → ${item.total_price.toFixed(2)} JD`;
+    return line;
+  }).join('\n');
+
+  const total = parseFloat(cart.reduce((s, c) => s + c.totalPrice, 0).toFixed(2));
 
   if (chatId) {
-    // Send via webhook — no length limit, full details included
     fetch('https://incisive-ambiguously-matilda.ngrok-free.dev/webhook/miniresto-order', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
+        chat_id: chatId,
         orderString: orderString,
-        chat_id: chatId
+        items: items,
+        total_price: total
       })
     }).then(res => {
       if (res.ok) {
